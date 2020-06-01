@@ -8,7 +8,8 @@ import {
 import "./App.css"
 
 // Pages
-import HomePage from "./views/HomePage/HomePage"
+import HomePage from "./pages/HomePage/HomePage"
+import AppPage from "./pages/AppPage/AppPage"
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route path="/" exact component={HomePage} />
+          <Route path="/app" exact component={AppPage} />
         </Switch>
       </Router>
     </div>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HomePage = styled.div`
+export const AppPage = styled.div`
   display: flex;
   background: var(--DarkColor);
 `;

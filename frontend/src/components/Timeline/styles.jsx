@@ -6,11 +6,22 @@ export const Modal = styled(SkyLight)`
 `
 
 export const Timeline = styled.div`
+  position: relative;
   flex-grow: 1;
   height: 100vh;
   background: var(--LightColor);
   color: var(--TextColor);
 `;
+
+export const Line = styled.div`
+  position: absolute;
+  top: 128px;
+  z-index: 1;
+  right: 24px;
+  height: 100%;
+  width: 8px;
+  background: var(--CardColor);
+`
 
 export const Header = styled.div`
   display: flex;
@@ -31,7 +42,7 @@ export const HeaderText = styled.h1`
 export const Content = styled.div`
   padding: 16px;
   padding-top: 0px;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 152px);
   overflow-y: scroll;
 `;
 

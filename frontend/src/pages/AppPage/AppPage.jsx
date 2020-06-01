@@ -1,6 +1,7 @@
 import * as S from "./styles"
 
 import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
 
 // APIs
 import Authentication from "components/API/Authentication.js"
@@ -15,13 +16,15 @@ import Outline from "../../components/Outline/Outline"
 import Comments from "../../components/Comments/Comments"
 import Timeline from "../../components/Timeline/Timeline"
 
-const HomePage = ({ classes, login, register, ...rest }) => {
+const AppPage = ({ classes, login, register, ...rest }) => {
   const [projectComponents, setProjectComponents] = useState([])
   const [milestones, setMilestones] = useState([])
   const [components, setComponents] = useState([])
   const [activeComponent, setActiveComponent] = useState('')
   const [activeComponentId, setActiveComponentId] = useState(null)
   const [activeComponentIndex, setActiveComponentIndex] = useState(null)
+
+  const [activeItem, setActiveItem] = useState(null)
 
   async function getComponents() {
     try {
@@ -39,6 +42,15 @@ const HomePage = ({ classes, login, register, ...rest }) => {
   useEffect(() => getComponents(), [])
 
   useEffect(() => {
+    if (document.getElementById(activeItem)) {
+      document.getElementById(activeItem).scrollIntoViewIfNeeded({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+      
+
+    }
+    console.log(activeItem)
+  }, [activeItem])
+
+  useEffect(() => {
     const newActiveComponentIndex = projectComponents.findIndex(component => component.component_name === activeComponent)
     setActiveComponentIndex(newActiveComponentIndex)
     if (newActiveComponentIndex >= 0) {
@@ -48,7 +60,7 @@ const HomePage = ({ classes, login, register, ...rest }) => {
   }, [activeComponent])
 
   return (
-    <S.HomePage>
+    <S.AppPage>
       <S.HeaderContainer>
         {
           Authentication.loggedIn()
@@ -66,16 +78,20 @@ const HomePage = ({ classes, login, register, ...rest }) => {
         milestones={milestones}
         activeComponent={activeComponent}
         updateCallback={getComponents}
+        setActiveItem={setActiveItem}
+        activeItem={activeItem}
       />
       <Timeline
         milestones={milestones}
         activeComponent={activeComponent}
         activeComponentId={activeComponentId}
         updateCallback={getComponents}
+        setActiveItem={setActiveItem}
+        activeItem={activeItem}
       />
       <Comments />
-    </S.HomePage>
+    </S.AppPage>
   )
 }
 
-export default HomePage
+export default AppPage

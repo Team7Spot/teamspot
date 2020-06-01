@@ -7,7 +7,7 @@ import ProjectAPI from "components/API/ProjectAPI.js"
 import Button from "../Button/Button"
 import TimelineMilestone from './TimelineMilestone/TimelineMilestone'
 
-const Timeline = ({ milestones, updateCallback, activeComponent, activeComponentId }) => {
+const Timeline = ({ milestones, updateCallback, activeComponent, activeComponentId, setActiveItem, activeItem }) => {
   const [type, setType] = useState('Milestone')
 
   // useEffect(() => console.log(milestones))
@@ -128,7 +128,6 @@ const Timeline = ({ milestones, updateCallback, activeComponent, activeComponent
         </S.ButtonContainer>
 
       <S.Content>
-       
 
         <S.TimelineMilestones>
         {
@@ -141,10 +140,14 @@ const Timeline = ({ milestones, updateCallback, activeComponent, activeComponent
               updateCallback={updateCallback}
               tasks={milestone.tasks}
               complete={milestone.completed}
+              setActiveItem={setActiveItem}
+              activeItem={activeItem}
             />
           )
         }
         </S.TimelineMilestones>
+
+        <S.Line />
 
       </S.Content>
     </S.Timeline>

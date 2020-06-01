@@ -1,24 +1,43 @@
 import styled from "styled-components";
 
 export const TimelineMilestone = styled.div`
+  z-index: 1000;
   display: flex;
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 16px;
-  
-  border-radius: 8px;
+  width: calc(100% - 28px);
+  margin-bottom: 32px;
   flex-wrap: wrap;
   user-select: none;
-  background: var(--ButtonColor);
+  
+`
+
+export const MilestoneBackground = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  border-radius: 8px;
+  background: var(--CardColor);
 `
 
 export const Header = styled.div`
+
+  position: relative;
   width: 100%;
   display: flex;
   margin-bottom: ${props => props.active ? '8px' : '0px'};
-  background: ${props => props.active ? 'var(--ButtonColor)' : 'var(--HighlightColor)'};
+  background: ${props => props.active ? 'var(--CardColor)' : 'var(--HighlightColor)'};
   padding: 16px;
   border-radius: 8px 8px 0px 0px;
+`
+
+export const Node = styled.div`
+  position: absolute;
+  z-index: 2;
+  top: 16px;
+  right: -38px;
+  width: 24px;
+  height: 24px;
+  background: ${props => props.active ? 'white' : 'var(--HighlightColor)'};
+  border-radius: 100%;
 `
 
 export const Name = styled.div`
@@ -42,15 +61,19 @@ export const Spacer = styled.div`
 `
 
 export const Deadline = styled.div`
+  height: 100%;
   display: flex;
+  align-items: center;
   font-size: var(--SmallSize);
 `
 
-export const Description = styled.div`
+export const TimelineDescription = styled.div`
   display: flex;
+  flex-wrap: nowrap;
   margin: 8px 0px;
   margin-top: 16px;
   font-size: var(--SmallSize);
+  width: 100%;
   user-select: auto !important;
 `
 
@@ -62,6 +85,8 @@ export const EmojiButtons = styled.div`
 
 export const Tasks = styled.div`
   width: 100%;
+  flex-wrap: wrap;
+  display: flex;
 `
 
 export const Break = styled.div`

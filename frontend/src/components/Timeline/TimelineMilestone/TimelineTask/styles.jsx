@@ -2,29 +2,39 @@ import styled from "styled-components";
 
 export const TimelineTask = styled.div`
   display: flex;
-  width: calc(100% - 32px);
-  max-width: calc(100% - 32px);
+  flex-wrap: wrap;
+  position: relative;
+  right: -64px;
+  width: calc(100% - 96px);
   margin-top: 16px;
   padding: 16px;
   border-radius: 8px;
-  flex-wrap: wrap;
-  background: var(--LightColor);
-  /* border: ; */
+  background: var(--CardColor);
   box-shadow: ${props => props.active ? 'none' : 'inset 0 0 0 1px var(--HighlightColor)'};
-  
-  /* background: var(--LightColor); */
   user-select: none;
 `
 
 export const Header = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   margin-bottom: ${props => props.active ? '8px' : '0px'};
 `
 
+export const Node = styled.div`
+  position: absolute;
+  z-index: 2;
+  top: 0px;
+  right: -51px;
+  width: 18px;
+  height: 18px;
+  background: ${props => props.active ? 'white' : 'var(--HighlightColor)'};
+  transform: rotate(45deg);
+`
+
 export const Name = styled.div`
   display: flex;
-  font-size: var(--LargeSize);
+  font-size: 16px;
 `
 
 export const Complete = styled.input`
@@ -42,7 +52,9 @@ export const Deadline = styled.div`
 `
 
 export const Description = styled.div`
+  width: 100%;
   display: flex;
+  flex-wrap: nowrap;
   margin: 8px 0px;
   font-size: var(--SmallSize);
   user-select: auto !important;

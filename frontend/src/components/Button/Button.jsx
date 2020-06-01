@@ -2,7 +2,7 @@ import * as S from "./styles";
 
 import React from "react";
 
-const Button = ({ icon, onClickFunction, emphasize, text, title }) => {
+const Button = ({ icon, onClickFunction, emphasize, text, title, outline }) => {
   const handleClick = e => {
     e.preventDefault();
     onClickFunction();
@@ -13,6 +13,7 @@ const Button = ({ icon, onClickFunction, emphasize, text, title }) => {
       onClick={e => handleClick(e)}
       emphasize={emphasize}
       square={!text}
+      outline={outline}
       title={title ? title : ""}
     >
       {/* {

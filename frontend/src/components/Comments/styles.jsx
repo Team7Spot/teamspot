@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Comments = styled.div`
-  width: 546px;
+  min-width: 546px;
   height: 100vh;
   background: var(--MediumColor);
   color: var(--TextColor);
@@ -24,7 +24,18 @@ export const HeaderText = styled.h1`
 `;
 
 export const Content = styled.div`
+  width: 100%;
+  height: calc(100vh - 64px);
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
 `;
+
+export const CommentInput = styled.input`
+  position: absolute;
+  bottom: 0px;
+  left: 16px; 
+  z-index: 1;
+  width: calc(100% - 32px);
+`
