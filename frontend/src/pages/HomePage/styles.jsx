@@ -1,12 +1,27 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
 export const HomePage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--DarkColor);
+  /* background: var(--DarkColor); */
   width: 100%;
   height: 100vh;
+`
+
+const appear = keyframes`
+{
+  0% {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
 `
 
 export const Container = styled.div`
@@ -15,6 +30,7 @@ export const Container = styled.div`
   align-items: center;
   flex-wrap: wrap;
   width: 380px;
+  animation: 1.4s ease-out 0s 1 ${appear} forwards;
 `
 
 export const Logo = styled.img`

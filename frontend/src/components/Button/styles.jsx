@@ -10,7 +10,8 @@ export const Button = styled.div`
   padding: ${props => (props.square ? "8px" : "12px 24px")};
   border-radius: 16px;
   margin: 4px;
-  background: ${props => props.emphasize ? "var(--HighlightColor)" : "var(--ButtonColor)"};
+  background: ${props => props.emphasize ? "var(--HighlightColor)" : props.outline ? 'none' :"var(--ButtonColor)"};
+  box-shadow: ${props => props.outline ? "0 0 0 2px white" : "none"};
   cursor: pointer;
   &:hover {
     background: var(--HighlightColor);

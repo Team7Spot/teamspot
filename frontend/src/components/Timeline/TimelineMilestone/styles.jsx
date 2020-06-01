@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const TimelineMilestone = styled.div`
+  z-index: 1000;
   display: flex;
   width: calc(100% - 28px);
-  margin-bottom: 16px;
+  margin-bottom: 32px;
   flex-wrap: wrap;
   user-select: none;
   
@@ -14,15 +15,16 @@ export const MilestoneBackground = styled.div`
   flex-wrap: wrap;
   width: 100%;
   border-radius: 8px;
-  background: var(--ButtonColor);
+  background: var(--CardColor);
 `
 
 export const Header = styled.div`
+
   position: relative;
   width: 100%;
   display: flex;
   margin-bottom: ${props => props.active ? '8px' : '0px'};
-  background: ${props => props.active ? 'var(--ButtonColor)' : 'var(--HighlightColor)'};
+  background: ${props => props.active ? 'var(--CardColor)' : 'var(--HighlightColor)'};
   padding: 16px;
   border-radius: 8px 8px 0px 0px;
 `
@@ -67,6 +69,7 @@ export const Deadline = styled.div`
 
 export const TimelineDescription = styled.div`
   display: flex;
+  flex-wrap: nowrap;
   margin: 8px 0px;
   margin-top: 16px;
   font-size: var(--SmallSize);

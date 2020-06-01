@@ -24,6 +24,8 @@ const AppPage = ({ classes, login, register, ...rest }) => {
   const [activeComponentId, setActiveComponentId] = useState(null)
   const [activeComponentIndex, setActiveComponentIndex] = useState(null)
 
+  const [activeItem, setActiveItem] = useState(null)
+
   async function getComponents() {
     try {
       const apiProjectComponents = await ProjectAPI.getComponents()
@@ -39,7 +41,14 @@ const AppPage = ({ classes, login, register, ...rest }) => {
 
   useEffect(() => getComponents(), [])
 
-  const history = useHistory()
+  useEffect(() => {
+    if (document.getElementById(activeItem)) {
+      document.getElementById(activeItem).scrollIntoViewIfNeeded({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+      
+
+    }
+    console.log(activeItem)
+  }, [activeItem])
 
   useEffect(() => {
     const newActiveComponentIndex = projectComponents.findIndex(component => component.component_name === activeComponent)
@@ -69,12 +78,16 @@ const AppPage = ({ classes, login, register, ...rest }) => {
         milestones={milestones}
         activeComponent={activeComponent}
         updateCallback={getComponents}
+        setActiveItem={setActiveItem}
+        activeItem={activeItem}
       />
       <Timeline
         milestones={milestones}
         activeComponent={activeComponent}
         activeComponentId={activeComponentId}
         updateCallback={getComponents}
+        setActiveItem={setActiveItem}
+        activeItem={activeItem}
       />
       <Comments />
     </S.AppPage>

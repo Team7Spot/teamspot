@@ -14,13 +14,11 @@ const TimelineMilestone = ({
   id, 
   updateCallback, 
   tasks,
-  complete
+  complete,
+  activeItem,
+  setActiveItem
 }) => {
-  const ref = useRef()
-
-  console.log(complete)
-
-  const [collapsed, setCollapsed ] = useState(true)
+  // const [collapsed, setCollapsed ] = useState(true)
 
   async function submit() {
     let props = {
@@ -40,8 +38,17 @@ const TimelineMilestone = ({
     submit()
   }
 
+  const collapsed = activeItem !== 'milestone' + id + name && !(tasks.filter(task => activeItem === `task${task.id}${task.task_name}`).length > 0)
+
+  const handleClick = e => {
+    e.stopPropagation()
+    collapsed ? setActiveItem('milestone' + id + name) : setActiveItem(null)
+  }
+
+  
+
   return (
-    <S.TimelineMilestone onClick={() => setCollapsed(!collapsed)} >
+    <S.TimelineMilestone onClick={(e) => handleClick(e)} >
       <S.MilestoneBackground>
         <S.Header active={collapsed}>
           <S.Name>{name}</S.Name>
@@ -79,9 +86,11 @@ const TimelineMilestone = ({
               name={task.task_name}
               deadline={task.deadline}
               description={task.description}
-              id={task.task_id}
+              id={task.id}
               updateCallback={updateCallback}
               complete={task.complete}
+              setActiveItem={setActiveItem}
+              activeItem={activeItem}
             /> 
           ) : null
         }

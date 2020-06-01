@@ -6,11 +6,11 @@ import React, { useRef, useState } from "react"
 
 import EmojiButton from '../../EmojiButton/EmojiButton'
 
-const TimelineTask = ({ name, description, deadline, id, updateCallback, complete }) => {
+const TimelineTask = ({ name, description, deadline, id, updateCallback, complete, activeItem, setActiveItem }) => {
 
   const ref = useRef()
 
-  const [collapsed, setCollapsed ] = useState(true)
+  // const [collapsed, setCollapsed ] = useState(true)
 
   async function submit() {
     let props = {
@@ -28,13 +28,15 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
     e.stopPropagation()
   }
 
-  const handleCollapseClick = e => {
+  const collapsed = activeItem !== 'task' + id + name
+
+  const handleClick = e => {
     e.stopPropagation()
-    setCollapsed(!collapsed)
+    collapsed ? setActiveItem('task' + id + name) : setActiveItem(null) 
   }
 
   return (
-    <S.TimelineTask onClick={handleCollapseClick} active={collapsed}>
+    <S.TimelineTask onClick={handleClick} active={collapsed} id={'task' + id + name}>
       <S.Header active={collapsed}>
         <S.Name>{name}</S.Name>
         <S.Complete type='checkbox' onClick={handleCompleteClick} value={complete}/>

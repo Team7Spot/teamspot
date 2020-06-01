@@ -20,7 +20,7 @@ export const Line = styled.div`
   right: 24px;
   height: 100%;
   width: 8px;
-  background: var(--ButtonColor);
+  background: var(--CardColor);
 `
 
 export const Header = styled.div`
@@ -42,7 +42,7 @@ export const HeaderText = styled.h1`
 export const Content = styled.div`
   padding: 16px;
   padding-top: 0px;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 152px);
   overflow-y: scroll;
 `;
 

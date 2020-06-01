@@ -48,10 +48,12 @@ class NoAuthHeaderLinks extends React.Component {
           <Button
             text={'Register'}
             onClickFunction={() => this.handleClickOpen("registerModal")}
+            outline={true}
           />
           <Button
             text={'Login'}
             onClickFunction={() => this.handleClickOpen("loginModal")}
+            outline={true}
           />
         </S.ButtonContainer>
     
