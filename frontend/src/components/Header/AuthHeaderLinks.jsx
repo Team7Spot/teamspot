@@ -15,6 +15,7 @@ import Menu from "@material-ui/core/Menu";
 import headerLinksStyle from "assets/jss/components/headerLinksStyle.jsx";
 import UserAuth from "components/API/UserAuth.js";
 
+
 class AuthHeaderLinks extends React.Component {
   constructor(props) {
     super(props);
@@ -24,6 +25,8 @@ class AuthHeaderLinks extends React.Component {
       notificationCount: 0
     };
     this.handleViewNotifications = this.handleViewNotifications.bind(this);
+
+    
   }
 
   handleMenu = event => {
@@ -41,7 +44,8 @@ class AuthHeaderLinks extends React.Component {
   handleLogout = () => {
     this.setState({ anchorEl: null });
     UserAuth.logout();
-    window.location.reload();
+    this.props.history.push("/");
+    window.location.reload()
   };
 
   handleViewNotifications() {

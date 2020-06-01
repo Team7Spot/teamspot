@@ -40,6 +40,7 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
         <S.Complete type='checkbox' onClick={handleCompleteClick} value={complete}/>
         <S.Spacer />
         <S.Deadline>{new Date(deadline).toLocaleDateString("en-US")}</S.Deadline>
+        <S.Node active={collapsed} />
       </S.Header>
 
       <S.Break />

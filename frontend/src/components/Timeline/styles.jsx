@@ -6,11 +6,22 @@ export const Modal = styled(SkyLight)`
 `
 
 export const Timeline = styled.div`
+  position: relative;
   flex-grow: 1;
   height: 100vh;
   background: var(--LightColor);
   color: var(--TextColor);
 `;
+
+export const Line = styled.div`
+  position: absolute;
+  top: 128px;
+  z-index: 1;
+  right: 24px;
+  height: 100%;
+  width: 8px;
+  background: var(--ButtonColor);
+`
 
 export const Header = styled.div`
   display: flex;

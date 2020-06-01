@@ -42,34 +42,37 @@ const TimelineMilestone = ({
 
   return (
     <S.TimelineMilestone onClick={() => setCollapsed(!collapsed)} >
-      <S.Header active={collapsed}>
-        <S.Name>{name}</S.Name>
-        <S.Complete type='checkbox' onClick={handleCompleteClick} checked={complete === 1 ? true : false} />
-        <S.Spacer />
-        <S.Deadline>{new Date(deadline).toLocaleDateString("en-US")}</S.Deadline>
-      </S.Header>
+      <S.MilestoneBackground>
+        <S.Header active={collapsed}>
+          <S.Name>{name}</S.Name>
+          <S.Complete type='checkbox' onClick={handleCompleteClick} checked={complete === 1 ? true : false} />
+          <S.Spacer />
+          <S.Deadline>{new Date(deadline).toLocaleDateString("en-US")}</S.Deadline>
+          <S.Node active={collapsed} />
+        </S.Header>
 
-      <S.Content>
-        <S.Break />
+        <S.Content>
+          <S.Break />
 
-        {
-          collapsed ? null : <S.Description>{description}</S.Description>
-        }
+          {
+            collapsed ? null : <S.TimelineDescription>{description}</S.TimelineDescription>
+          }
 
-        <S.Break />
+          <S.Break />
 
-        <S.EmojiButtons>
-          <EmojiButton emoji={'👏'} reactions={4} />
-          <EmojiButton emoji={'🎉'} reactions={4} />
-          <EmojiButton emoji={'🔥'} reactions={4} />
-          <EmojiButton emoji={'🤟'} reactions={4} />
-          <EmojiButton emoji={'❤️'} reactions={4} />
-          <EmojiButton emoji={'😍'} reactions={4} />
-          <EmojiButton emoji={'👀'} reactions={4} />
-          <EmojiButton emoji={'💵'} reactions={4} />
-        </S.EmojiButtons>
-
-        <S.Tasks>
+          <S.EmojiButtons>
+            <EmojiButton emoji={'👏'} reactions={4} />
+            <EmojiButton emoji={'🎉'} reactions={4} />
+            <EmojiButton emoji={'🔥'} reactions={4} />
+            <EmojiButton emoji={'🤟'} reactions={4} />
+            <EmojiButton emoji={'❤️'} reactions={4} />
+            <EmojiButton emoji={'😍'} reactions={4} />
+            <EmojiButton emoji={'👀'} reactions={4} />
+            <EmojiButton emoji={'💵'} reactions={4} />
+          </S.EmojiButtons>
+        </S.Content>
+      </S.MilestoneBackground>
+      <S.Tasks>
         {
           tasks && !collapsed ? tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline)).map(task => 
             <TimelineTask
@@ -82,11 +85,7 @@ const TimelineMilestone = ({
             /> 
           ) : null
         }
-        </S.Tasks>
-      </S.Content>
-
-      
-
+      </S.Tasks>
     </S.TimelineMilestone>
   )
 }

@@ -146,6 +146,8 @@ const Timeline = ({ milestones, updateCallback, activeComponent, activeComponent
         }
         </S.TimelineMilestones>
 
+        <S.Line />
+
       </S.Content>
     </S.Timeline>
   )

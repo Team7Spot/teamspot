@@ -1,6 +1,7 @@
 import * as S from "./styles"
 
 import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
 
 // APIs
 import Authentication from "components/API/Authentication.js"
@@ -15,7 +16,7 @@ import Outline from "../../components/Outline/Outline"
 import Comments from "../../components/Comments/Comments"
 import Timeline from "../../components/Timeline/Timeline"
 
-const HomePage = ({ classes, login, register, ...rest }) => {
+const AppPage = ({ classes, login, register, ...rest }) => {
   const [projectComponents, setProjectComponents] = useState([])
   const [milestones, setMilestones] = useState([])
   const [components, setComponents] = useState([])
@@ -38,6 +39,8 @@ const HomePage = ({ classes, login, register, ...rest }) => {
 
   useEffect(() => getComponents(), [])
 
+  const history = useHistory()
+
   useEffect(() => {
     const newActiveComponentIndex = projectComponents.findIndex(component => component.component_name === activeComponent)
     setActiveComponentIndex(newActiveComponentIndex)
@@ -48,7 +51,7 @@ const HomePage = ({ classes, login, register, ...rest }) => {
   }, [activeComponent])
 
   return (
-    <S.HomePage>
+    <S.AppPage>
       <S.HeaderContainer>
         {
           Authentication.loggedIn()
@@ -74,8 +77,8 @@ const HomePage = ({ classes, login, register, ...rest }) => {
         updateCallback={getComponents}
       />
       <Comments />
-    </S.HomePage>
+    </S.AppPage>
   )
 }
 
-export default HomePage
+export default AppPage

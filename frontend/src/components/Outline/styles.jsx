@@ -5,7 +5,7 @@ export const Outline = styled.div`
   height: 100vh;
   background: var(--MediumColor);
   color: var(--TextColor);
-`;
+`
 
 export const Header = styled.div`
   display: flex;
@@ -15,26 +15,26 @@ export const Header = styled.div`
   height: var(--HeaderHeight);
   background: var(--MediumColor);
   border-bottom: solid var(--DarkColor) 1px;
-`;
+`
 
 export const HeaderText = styled.h1`
   font-size: var(--HeaderSize);
   font-weight: var(--HeaderWeight);
   padding: 16px;
-`;
+`
 
 export const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
-`;
+`
 
 export const MilestoneContainer = styled.div`
   padding: 16px;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-`;
+`
 
 export const Milestone = styled.h3`
   font-size: var(--LargeSize);
@@ -42,7 +42,7 @@ export const Milestone = styled.h3`
   display: flex;
   flex-basis: 100%;
   font-weight: 400;
-`;
+`
 
 export const Task = styled.h5`
   font-size: var(--SmallSize);
@@ -51,4 +51,4 @@ export const Task = styled.h5`
   margin: 0;
   font-weight: 400;
   margin-top: 8px;
-`;
+`

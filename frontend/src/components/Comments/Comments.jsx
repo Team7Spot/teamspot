@@ -9,7 +9,9 @@ const Comments = () => {
         <S.HeaderText>Comments</S.HeaderText>
       </S.Header>
 
-      <S.Content></S.Content>
+      <S.Content>
+        <S.CommentInput type='text' />
+      </S.Content>
     </S.Comments>
   );
 };
