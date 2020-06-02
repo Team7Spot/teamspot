@@ -19,7 +19,6 @@ import Timeline from "../../components/Timeline/Timeline"
 const AppPage = ({ classes, login, register, ...rest }) => {
   const [projectComponents, setProjectComponents] = useState([])
   const [milestones, setMilestones] = useState([])
-  const [components, setComponents] = useState([])
   const [activeComponent, setActiveComponent] = useState('')
   const [activeComponentId, setActiveComponentId] = useState(null)
   const [activeComponentIndex, setActiveComponentIndex] = useState(null)
@@ -31,7 +30,7 @@ const AppPage = ({ classes, login, register, ...rest }) => {
       const apiProjectComponents = await ProjectAPI.getComponents()
       console.log(apiProjectComponents)
       setProjectComponents(apiProjectComponents)
-      setComponents(apiProjectComponents.map(component => component.component_name))
+      // setComponents(apiProjectComponents.map(component => component.component_name))
       setMilestones(apiProjectComponents[activeComponentIndex ? activeComponentIndex : 0].milestones)
       setActiveComponent(apiProjectComponents[activeComponentIndex ? activeComponentIndex : 0].component_name)
       setActiveComponentId(apiProjectComponents[activeComponentIndex ? activeComponentIndex : 0].project_component_id)
@@ -59,6 +58,11 @@ const AppPage = ({ classes, login, register, ...rest }) => {
     }
   }, [activeComponent])
 
+  const resetActiveComponent = () => {
+    setActiveComponent(projectComponents[0].component_name)
+    setActiveComponentId(projectComponents[0].project_component_id)
+  }
+
   return (
     <S.AppPage>
       <S.HeaderContainer>
@@ -70,9 +74,11 @@ const AppPage = ({ classes, login, register, ...rest }) => {
       </S.HeaderContainer>
 
       <Sidebar 
-        components={components} 
+        projectComponents={projectComponents} 
         activeComponent={activeComponent} 
         onClickFunction={payload => setActiveComponent(payload)}
+        updateCallback={getComponents}
+        resetActiveComponent={resetActiveComponent}
       />
       <Outline 
         milestones={milestones}
