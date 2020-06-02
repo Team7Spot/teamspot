@@ -8,5 +8,3 @@ const port = config.serverConfig.port;
 const server = app.listen(port, () => {
   console.log("Server running at port " + port);
 });
-
-module.exports = server;

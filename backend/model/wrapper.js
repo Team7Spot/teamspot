@@ -6,7 +6,6 @@ const milestoneWrapper = require("./milestoneWrapper");
 const taskWrapper = require("./taskWrapper");
 const userWrapper = require("./userWrapper");
 const teamWrapper = require("./teamWrapper");
-const chatWrapper = require("./chatWrapper");
 
 module.exports = {
   executeSQL: (connection, sql, varList) => {
@@ -64,6 +63,12 @@ module.exports = {
   deleteProject: (connection, id) => {
     return projectWrapper.delete(connection, id);
   },
+  getCommentsProject: (connection, id) => {
+    return projectWrapper.getComments(connection, id);
+  },
+  sendCommentProject: (connection, id) => {
+    return projectWrapper.sendComment(connection, id);
+  },
   //component functions
   createComponent: (
     connection,
@@ -98,6 +103,12 @@ module.exports = {
   },
   deleteComponent: (connection, id) => {
     return componentWrapper.delete(connection, id);
+  },
+  getCommentsComponent: (connection, id) => {
+    return componentWrapper.getComments(connection, id);
+  },
+  sendCommentComponent: (connection, id) => {
+    return componentWrapper.sendComment(connection, id);
   },
   //milestone functions
   createMilestone: (
@@ -152,6 +163,12 @@ module.exports = {
   completeMilestone: (connection, id, status) => {
     return milestoneWrapper.complete(connection, id, status);
   },
+  getCommments: (connection, id) => {
+    return milestoneWrapper.getCommments(connection, id);
+  },
+  sendCommentMilestone: (connection, id) => {
+    return milestoneWrapper.sendComment(connection, id);
+  },
   //task functions
   createTask: (
     connection,
@@ -196,11 +213,20 @@ module.exports = {
   assignTask: (connection, user_id, task_id) => {
     return taskWrapper.assign(connection, user_id, task_id);
   },
-  completeTask: (connection, id) => {
-    return taskWrapper.complete(connection, id);
+  completeTask: (connection, id, status) => {
+    return taskWrapper.complete(connection, id, status);
   },
   deleteTask: (connection, id) => {
     return taskWrapper.delete(connection, id);
+  },
+  checkTaskStatus: (connection, id) => {
+    return taskWrapper.checkStatus(connection, id);
+  },
+  getCommentsTask: (connection, id) => {
+    return taskWrapper.getComments(connection, id);
+  },
+  sendCommentTask: (connection, id) => {
+    return taskWrapper.sendComment(connection, id);
   },
   //user functions
   userExists: (connection, email) => {
@@ -228,11 +254,5 @@ module.exports = {
     return teamWrapper.createTeam(
       connection
     );
-  },
-  sendMessage: (connection) => {
-    return chatWrapper.send();
-  },
-  getMessage: (connection) => {
-    return chatWrapper.get();
   }
 }

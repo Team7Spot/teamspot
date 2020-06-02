@@ -108,5 +108,29 @@ module.exports = {
         }
       });
     });
+  },
+  getComments: (connection, id) => {
+    let query = "SELECT comments FROM project_component WHERE id = ?;";
+    return new Promise((res, rej) => {
+      connection.query(query, [id], (err, rows, fields) => {
+        if (err) {
+          rej(err);
+        } else {
+          res(rows);
+        }
+      })
+    });
+  },
+  sendComment: (connection, id, comment) => {
+    let query = "UPDATE project_component SET comments = CONCAT(comments, '?') WHERE id = ?;";
+    return new Promise((res, rej) => {
+      connection.query(query, [comment, id], (err, rows, fields) => {
+        if (err) {
+          rej(err);
+        } else {
+          res(rows);
+        }
+      })
+    });
   }
 };
