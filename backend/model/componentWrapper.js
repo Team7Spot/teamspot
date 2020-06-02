@@ -98,9 +98,9 @@ module.exports = {
     });
   },
   delete: (connection, id) => {
-    let query = "DELETE FROM project_component WHERE id = ${id};";
+    let query = "DELETE FROM project_component WHERE id = ?;";
     return new Promise((res, rej) => {
-      connection.query(query, (err, rows, fields) => {
+      connection.query(query, [id], (err, rows, fields) => {
         if (err) {
           rej(err);
         } else {
