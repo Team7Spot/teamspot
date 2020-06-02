@@ -98,10 +98,15 @@ module.exports = {
       });
     });
   },
-  complete: (connection, id) => {
-    let query = "UPDATE task SET completed = 1 where id = ${id}";
+  complete: (connection, id, status) => {
+    let query = "UPDATE task SET completed = ? where id = ?";
     return new Promise((res, rej) => {
-      connection.query(query, (err, rows, fields) => {
+      connection.query(
+        query,
+        [
+          status, id
+        ],
+        (err, rows, fields) => {
         if (err) {
           rej(err);
         } else {
@@ -120,6 +125,42 @@ module.exports = {
           res(rows);
         }
       });
+    });
+  },
+  checkStatus: (connection, id) => {
+    let query = "SELECT completed FROM task WHERE id = ?;";
+    return new Promise((res, rej) => {
+      connection.query(query, [id], (err, rows, fields) => {
+        if (err) {
+          rej(err);
+        } else {
+          res(rows);
+        }
+      })
+    });
+  },
+  getComments: (connection, id) => {
+    let query = "SELECT comments FROM task WHERE id = ?;";
+    return new Promise((res, rej) => {
+      connection.query(query, [id], (err, rows, fields) => {
+        if (err) {
+          rej(err);
+        } else {
+          res(rows);
+        }
+      })
+    });
+  },
+  sendComment: (connection, id, comment) => {
+    let query = "UPDATE task SET comments = CONCAT(comments, '?') WHERE id = ?;";
+    return new Promise((res, rej) => {
+      connection.query(query, [comment, id], (err, rows, fields) => {
+        if (err) {
+          rej(err);
+        } else {
+          res(rows);
+        }
+      })
     });
   }
 };
