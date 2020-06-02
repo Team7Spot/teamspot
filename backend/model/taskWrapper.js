@@ -87,7 +87,7 @@ module.exports = {
     });
   },
   assign: (connection, user_id, task_id) => {
-    let query = "INSERT INTO assigned(user_id, task_id) VALUES(${user_id}, ${task_id})";
+    let query = `INSERT INTO assigned(user_id, task_id) VALUES(${user_id}, ${task_id})`;
     return new Promise((res, rej) => {
       connection.query(query, (err, rows, fields) => {
         if (err) {
@@ -116,7 +116,7 @@ module.exports = {
     });
   },
   delete: (connection, id) => {
-    let query = "DELETE FROM task WHERE id = ${id};";
+    let query = `DELETE FROM task WHERE id = ${id};`;
     return new Promise((res, rej) => {
       connection.query(query, (err, rows, fields) => {
         if (err) {

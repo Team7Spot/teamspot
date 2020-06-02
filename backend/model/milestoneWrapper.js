@@ -34,9 +34,9 @@ module.exports = {
     });
   },
   getMilestone: (connection, milestoneID) => {
-    let query = `SELECT * FROM milestone WHERE id = ${milestoneID};`;
+    let query = "SELECT * FROM milestone WHERE id = ?;";
     return new Promise((res, rej) => {
-      connection.query(query, (err, rows, fields) => {
+      connection.query(query, [milestoneID], (err, rows, fields) => {
         if (err) {
           rej(err);
         } else {
@@ -58,9 +58,9 @@ module.exports = {
     });
   },
   getMilestoneTasks: (connection, milestoneID) => {
-    let query = `SELECT * FROM task WHERE milestone_id = "${milestoneID}"`;
+    let query = "SELECT * FROM task WHERE milestone_id = ?;";
     return new Promise((res, rej) => {
-      connection.query(query, (err, rows, fields) => {
+      connection.query(query, [milestoneID], (err, rows, fields) => {
         if (err) {
           rej(err);
         } else {
@@ -129,7 +129,7 @@ module.exports = {
     });
   },
   delete: (connection, id) => {
-    let query = "DELETE FROM milestone WHERE id = ${id};";
+    let query = `DELETE FROM milestone WHERE id = ${id};`;
     return new Promise((res, rej) => {
       connection.query(query, (err, rows, fields) => {
         if (err) {

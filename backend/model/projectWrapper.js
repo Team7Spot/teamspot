@@ -96,7 +96,7 @@ module.exports = {
     });
   },
   complete: (connection, id) => {
-    let query = "UPDATE project SET completed = 1 where id = ${id}";
+    let query = `UPDATE project SET completed = 1 where id = ${id}`;
     return new Promise((res, rej) => {
       connection.query(query, (err, rows, fields) => {
         if (err) {
@@ -108,7 +108,7 @@ module.exports = {
     });
   },
   delete: (connection, id) => {
-    let query = "DELETE FROM project WHERE id = ${id};";
+    let query = `DELETE FROM project WHERE id = ${id};`;
     return new Promise((res, rej) => {
       connection.query(query, (err, rows, fields) => {
         if (err) {

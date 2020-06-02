@@ -39,9 +39,9 @@ module.exports = {
     });
   },
   getComponent: (connection, componentID) => {
-    let query = `SELECT * FROM project_component WHERE id = ${componentID};`;
+    let query = "SELECT * FROM project_component WHERE id = ?;";
     return new Promise((res, rej) => {
-      connection.query(query, (err, rows, fields) => {
+      connection.query(query, [componentID], (err, rows, fields) => {
         if (err) {
           rej(err);
         } else {
@@ -51,9 +51,9 @@ module.exports = {
     });
   },
   getComponentMilestones: (connection, componentID) => {
-    let query = `SELECT * FROM milestone WHERE project_component_id = "${componentID}"`;
+    let query = "SELECT * FROM milestone WHERE project_component_id = ?;";
     return new Promise((res, rej) => {
-      connection.query(query, (err, rows, fields) => {
+      connection.query(query, [componentID], (err, rows, fields) => {
         if (err) {
           rej(err);
         } else {
@@ -86,9 +86,9 @@ module.exports = {
     });
   },
   complete: (connection, id) => {
-    let query = "UPDATE project_component SET completed = 1 where id = '${id}'";
+    let query = "UPDATE project_component SET completed = 1 where id = ?;";
     return new Promise((res, rej) => {
-      connection.query(query, (err, rows, fields) => {
+      connection.query(query, [id], (err, rows, fields) => {
         if (err) {
           rej(err);
         } else {
@@ -98,9 +98,9 @@ module.exports = {
     });
   },
   delete: (connection, id) => {
-    let query = "DELETE FROM project_component WHERE id = ${id};";
+    let query = "DELETE FROM project_component WHERE id = ?;";
     return new Promise((res, rej) => {
-      connection.query(query, (err, rows, fields) => {
+      connection.query(query, [id] ,(err, rows, fields) => {
         if (err) {
           rej(err);
         } else {
