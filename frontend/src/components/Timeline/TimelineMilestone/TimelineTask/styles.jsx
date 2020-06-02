@@ -10,7 +10,7 @@ export const TimelineTask = styled.div`
   padding: 16px;
   border-radius: 8px;
   background: var(--CardColor);
-  box-shadow: ${props => props.active ? 'none' : 'inset 0 0 0 1px var(--HighlightColor)'};
+  box-shadow: ${props => props.active ? 'inset 0 0 0 1px #ccc' : 'inset 0 0 0 1px var(--HighlightColor)'};
   user-select: none;
 `
 

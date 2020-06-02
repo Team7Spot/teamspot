@@ -7,7 +7,6 @@ export const TimelineMilestone = styled.div`
   margin-bottom: 32px;
   flex-wrap: wrap;
   user-select: none;
-  
 `
 
 export const MilestoneBackground = styled.div`
