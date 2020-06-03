@@ -25,9 +25,12 @@ export const HeaderText = styled.h1`
 `
 
 export const Content = styled.div`
+  max-height: calc(100vh - 48px);
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
+  align-items: flex-start;
+  overflow-y: auto;
 `
 
 export const MilestoneContainer = styled.div`
