@@ -1,9 +1,12 @@
 "use strict";
 
 const express = require("express");
+const path = require("path");
+//const cors = require("cors");
 
 const config = require("./config");
 const connection = require("./model/connect");
+const bodyparser = require("body-parser");
 
 const projects = require('./controllers/projects');
 const components = require('./controllers/components');
@@ -34,11 +37,18 @@ if (config.serverConfig.env === "development") {
 }
 
 const app = express();
+app.use(express.static(path.join(__dirname, '../frontend/build')))
+
+app.get('/app', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
+});
+
 
 // set logger
 app.set("logger", log4js);
 // set server config
 app.set("serverConfig", config.serverConfig);
+
 // set authentication config
 app.set("authConfig", config.authConfig);
 // set database config
@@ -54,8 +64,9 @@ connection.connect(
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+//app.use(cors());
 
-if (app.get("serverConfig").env === "development") {
+/*if (app.get("serverConfig").env === "development") {
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
@@ -64,7 +75,7 @@ if (app.get("serverConfig").env === "development") {
     );
     next();
   });
-}
+}*/
 
 app.use("/api/project", projects);
 app.use("/api/components", components);
@@ -105,8 +116,8 @@ app.use(function(err, req, res, next) {
   res.json({ status: err.status, message: err.message });
 });
 
-if (app.get("env") === "development") {
+/*if (app.get("env") === "development") {
   app.locals.pretty = true;
-}
+}*/
 
 module.exports = app;
