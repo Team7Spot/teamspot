@@ -11,6 +11,7 @@ export const Timeline = styled.div`
   height: 100vh;
   background: var(--LightColor);
   color: var(--TextColor);
+  overflow: visible;
 `;
 
 export const Line = styled.div`
@@ -43,6 +44,7 @@ export const Content = styled.div`
   padding: 16px;
   padding-top: 0px;
   height: calc(100vh - 152px);
+  overflow-x: hidden;
   overflow-y: scroll;
 `;
 

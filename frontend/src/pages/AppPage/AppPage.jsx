@@ -1,7 +1,6 @@
 import * as S from "./styles"
 
 import React, { useEffect, useState } from "react"
-import { useHistory } from "react-router-dom"
 
 // APIs
 import Authentication from "components/API/Authentication.js"
@@ -22,7 +21,6 @@ const AppPage = ({ classes, login, register, ...rest }) => {
   const [activeComponent, setActiveComponent] = useState('')
   const [activeComponentId, setActiveComponentId] = useState(null)
   const [activeComponentIndex, setActiveComponentIndex] = useState(null)
-
   const [activeItem, setActiveItem] = useState(null)
 
   async function getComponents() {
@@ -30,7 +28,6 @@ const AppPage = ({ classes, login, register, ...rest }) => {
       const apiProjectComponents = await ProjectAPI.getComponents()
       console.log(apiProjectComponents)
       setProjectComponents(apiProjectComponents)
-      // setComponents(apiProjectComponents.map(component => component.component_name))
       setMilestones(apiProjectComponents[activeComponentIndex ? activeComponentIndex : 0].milestones)
       setActiveComponent(apiProjectComponents[activeComponentIndex ? activeComponentIndex : 0].component_name)
       setActiveComponentId(apiProjectComponents[activeComponentIndex ? activeComponentIndex : 0].project_component_id)
@@ -41,14 +38,11 @@ const AppPage = ({ classes, login, register, ...rest }) => {
   useEffect(() => getComponents(), [])
 
   useEffect(() => {
-    if (document.getElementById(activeItem)) {
-      document.getElementById(activeItem).scrollIntoViewIfNeeded({ behavior: 'smooth', block: 'nearest', inline: 'start' })
-      
-
-    }
-    console.log(activeItem)
+    const activeItemElement = document.getElementById(activeItem)
+    if (activeItemElement) { activeItemElement.scrollIntoViewIfNeeded()}
   }, [activeItem])
 
+  // set milestones, active component index, and active component id
   useEffect(() => {
     const newActiveComponentIndex = projectComponents.findIndex(component => component.component_name === activeComponent)
     setActiveComponentIndex(newActiveComponentIndex)
