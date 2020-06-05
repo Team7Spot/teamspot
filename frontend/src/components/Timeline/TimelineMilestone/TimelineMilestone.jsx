@@ -51,22 +51,17 @@ const TimelineMilestone = ({
     <S.TimelineMilestone onClick={(e) => handleClick(e)} >
       <S.MilestoneBackground>
         <S.Header active={collapsed}>
-          <S.Name>{name}</S.Name>
+          <S.Name>{name}&nbsp;</S.Name>
           <S.Complete type='checkbox' onClick={handleCompleteClick} checked={complete === 1 ? true : false} />
           <S.Spacer />
           <S.Deadline>{new Date(deadline).toLocaleDateString("en-US")}</S.Deadline>
           <S.Node active={collapsed} />
         </S.Header>
 
-        <S.Content>
-          <S.Break />
-
+        <S.Content active={collapsed}>
           {
             collapsed ? null : <S.TimelineDescription>{description}</S.TimelineDescription>
           }
-
-          <S.Break />
-
           <S.EmojiButtons>
             <EmojiButton emoji={'👏'} reactions={4} />
             <EmojiButton emoji={'🎉'} reactions={4} />

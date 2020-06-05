@@ -17,7 +17,7 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
       id
     }
     try {
-      await ProjectAPI.markMilestoneComplete(props)
+      await ProjectAPI.markTaskComplete(props)
     } 
     catch(e) { }
 
@@ -26,6 +26,7 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
 
   const handleCompleteClick = e => {
     e.stopPropagation()
+    submit()
   }
 
   const collapsed = activeItem !== 'task' + id + name
@@ -38,7 +39,7 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
   return (
     <S.TimelineTask onClick={handleClick} active={collapsed} id={'task' + id + name}>
       <S.Header active={collapsed}>
-        <S.Name>{name}</S.Name>
+        <S.Name>{name}&nbsp;</S.Name>
         <S.Complete type='checkbox' onClick={handleCompleteClick} value={complete}/>
         <S.Spacer />
         <S.Deadline>{new Date(deadline).toLocaleDateString("en-US")}</S.Deadline>
@@ -63,8 +64,6 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
           <EmojiButton emoji={'😍'} reactions={4} />
         </S.EmojiButtons>
       }
-
-      
 
     </S.TimelineTask>
   )
