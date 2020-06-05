@@ -162,5 +162,17 @@ module.exports = {
         }
       })
     });
+  },
+  addReaction: (connection, id, emojis) => {
+    let query = `UPDATE task SET emoji = ${emojis} WHERE id = ${id};`;
+    return new Promise((res, rej) => {
+      connection.query(query, (err, rows, fields) => {
+        if (err) {
+          rej(err);
+        } else {
+          res(rows);
+        }
+      })
+    });
   }
 };

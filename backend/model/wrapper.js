@@ -169,6 +169,9 @@ module.exports = {
   sendCommentMilestone: (connection, id) => {
     return milestoneWrapper.sendComment(connection, id);
   },
+  milestoneReaction: (connection, id, emojis) => {
+    return milestoneWrapper.addReaction(connection, id, emojis);
+  },
   //task functions
   createTask: (
     connection,
@@ -227,6 +230,9 @@ module.exports = {
   },
   sendCommentTask: (connection, id) => {
     return taskWrapper.sendComment(connection, id);
+  },
+  taskReaction: (connection, id, emojis) => {
+    return taskWrapper.addReaction(connection, id, emojis);
   },
   //user functions
   userExists: (connection, email) => {
