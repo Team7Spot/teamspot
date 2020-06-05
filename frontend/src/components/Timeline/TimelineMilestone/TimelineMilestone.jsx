@@ -83,7 +83,7 @@ const TimelineMilestone = ({
               description={task.description}
               id={task.id}
               updateCallback={updateCallback}
-              complete={task.complete}
+              complete={task.completed}
               setActiveItem={setActiveItem}
               activeItem={activeItem}
             /> 
