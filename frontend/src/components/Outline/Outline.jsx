@@ -21,16 +21,16 @@ const Outline = ({ milestones, activeComponent, setActiveItem, activeItem }) => 
               active={activeItem === ('milestone' + milestone.id + milestone.milestone_name)}
               onClick={() => handleClick('milestone', milestone.id, milestone.milestone_name)}
             >
-              {milestone.milestone_name}
+              {`${milestone.milestone_name}${milestone.completed ? ' ✅' : ''}`}
             </S.Milestone>
-            {milestone.tasks.map(task => (
-              <S.Task
-                active={activeItem === ('task' + task.id + task.task_name)}
-                onClick={() => handleClick('task', task.id, task.task_name)}
-              >
-                {task.task_name}
-              </S.Task>
-            ))}
+              {milestone.tasks.map(task => (
+                <S.Task
+                  active={activeItem === ('task' + task.id + task.task_name)}
+                  onClick={() => handleClick('task', task.id, task.task_name)}
+                >
+                  {`${task.task_name}${task.completed ? ' ✅' : ''}`}
+                </S.Task>
+              ))}
           </S.MilestoneContainer>
         ))}
       </S.Content>

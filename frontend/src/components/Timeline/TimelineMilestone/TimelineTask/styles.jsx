@@ -18,7 +18,7 @@ export const Header = styled.div`
   position: relative;
   width: 100%;
   display: flex;
-  margin-bottom: ${props => props.active ? '8px' : '0px'};
+  cursor: pointer;
 `
 
 export const Node = styled.div`

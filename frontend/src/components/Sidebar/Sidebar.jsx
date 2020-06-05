@@ -54,14 +54,16 @@ const Sidebar = ({activeComponent, projectComponents, onClickFunction, updateCal
     color: '#ffffff',
     width: '200px',
     left: 'calc(50% + 200px)',
-    borderRadius: '8px'
+    borderRadius: '8px',
+    height: 'auto'
   }
 
   const simpleDialog = useRef()
 
   const [action, setAction] = useState('create')
 
-  const openModal = (actionType, editId) => {
+  const openModal = (e, actionType, editId) => {
+    e.stopPropagation()
 
     if (actionType === 'create') {
       setAction('create')
@@ -70,7 +72,6 @@ const Sidebar = ({activeComponent, projectComponents, onClickFunction, updateCal
       setAction('update')
       setComponentId(editId)
     }
-
 
     if (simpleDialog.current) {
       simpleDialog.current.show()
@@ -96,9 +97,11 @@ const Sidebar = ({activeComponent, projectComponents, onClickFunction, updateCal
             <Button text='Submit' onClickFunction={() => { action === 'update' ? update() : submit() }}/>
           </S.ButtonInput>
           {
+            action === 'update' ?
             <S.ButtonInput>
               <Button text='Delete' onClickFunction={() => deleteComponent()}/>
             </S.ButtonInput>
+            : null
           }
         </S.Inputs>
 
@@ -123,13 +126,13 @@ const Sidebar = ({activeComponent, projectComponents, onClickFunction, updateCal
           >
             {component.component_name.charAt(0).toUpperCase()}
             {
-              showDelete ? <S.Delete onClick={() => openModal('update', component.id)}><S.Edit src={require('./edit.svg')} /></S.Delete> : null
+              showDelete ? <S.Delete onClick={e => openModal(e, 'update', component.id)}><S.Edit src={require('./edit.svg')} /></S.Delete> : null
             }
             
           </S.Component>
         )
       }
-      <S.Component onClick={() => openModal('create')}>+</S.Component>
+      <S.Component onClick={e => openModal(e, 'create')}>+</S.Component>
 
       <S.Spacer />
 

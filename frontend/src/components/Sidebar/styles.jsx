@@ -64,11 +64,6 @@ export const Edit = styled.img`
   height: 24px;
 `
 
-export const SmallEdit = styled.img`
-  width: 18px;
-  height: 18px;
-`
-
 export const Inputs = styled.div`
   display: flex;
   flex-direction: column;
@@ -95,8 +90,8 @@ export const Delete = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  top: -4px;
-  right: -4px;
+  top: -8px;
+  right: -8px;
   position: absolute;
   width: 24px;
   height: 24px;

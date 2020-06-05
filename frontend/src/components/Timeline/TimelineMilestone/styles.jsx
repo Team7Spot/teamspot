@@ -4,7 +4,7 @@ export const TimelineMilestone = styled.div`
   z-index: 1000;
   display: flex;
   width: calc(100% - 28px);
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
   user-select: none;
 `
@@ -18,14 +18,14 @@ export const MilestoneBackground = styled.div`
 `
 
 export const Header = styled.div`
-
   position: relative;
   width: 100%;
   display: flex;
-  margin-bottom: ${props => props.active ? '8px' : '0px'};
   background: ${props => props.active ? 'var(--CardColor)' : 'var(--HighlightColor)'};
   padding: 16px;
+  padding-bottom: ${props => props.active ? '8px' : '16px'};
   border-radius: 8px 8px 0px 0px;
+  cursor: pointer;
 `
 
 export const Node = styled.div`
