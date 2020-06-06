@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Comments = styled.div`
-  min-width: 546px;
+  min-width: 446px;
   height: 100vh;
   background: var(--MediumColor);
   color: var(--TextColor);
