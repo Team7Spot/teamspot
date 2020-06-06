@@ -44,6 +44,11 @@ export const Name = styled.div`
   font-size: var(--LargeSize);
 `
 
+export const EditName = styled.input`
+  font-size: var(--LargeSize);
+  border: none;
+`
+
 export const Complete = styled.input`
 
 `
@@ -59,11 +64,48 @@ export const Spacer = styled.div`
   flex-grow: 1;
 `
 
+export const Edit = styled.img`
+  width: 18px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  &:hover {
+    transform: scale(1.5);
+  }
+`
+
+export const EditDate = styled.input`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: var(--SmallSize);
+`
+
 export const Deadline = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
   font-size: var(--SmallSize);
+`
+
+export const Delete = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: var(--SmallSize);
+  margin-left: 8px;
+`
+
+export const EditDescription = styled.input`
+  border: none;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 8px 0px;
+  margin-top: 16px;
+  font-size: var(--SmallSize);
+  width: 100%;
+  user-select: auto !important;
 `
 
 export const TimelineDescription = styled.div`

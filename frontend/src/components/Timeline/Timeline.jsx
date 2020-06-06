@@ -133,6 +133,7 @@ const Timeline = ({ milestones, updateCallback, activeComponent, activeComponent
         {
           milestones.sort((a, b) => new Date(a.deadline) - new Date(b.deadline)).map(milestone => 
             <TimelineMilestone 
+              key={milestone.milestone_name + milestone.id}
               name={milestone.milestone_name}
               deadline={milestone.deadline}
               description={milestone.description}
@@ -142,6 +143,7 @@ const Timeline = ({ milestones, updateCallback, activeComponent, activeComponent
               complete={milestone.completed}
               setActiveItem={setActiveItem}
               activeItem={activeItem}
+              priority={milestone.priority}
             />
           )
         }
