@@ -65,7 +65,7 @@ module.exports = {
     deadline,
     id
   ) => {
-    let query = "UPDATE milestone SET task_name = ?, priority = ?, description = ?, deadline = ? WHERE id = ?;";
+    let query = "UPDATE task SET task_name = ?, priority = ?, description = ?, deadline = ? WHERE id = ?;";
     return new Promise((resolve, reject) => {
       connection.query(
         query,
