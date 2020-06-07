@@ -19,8 +19,6 @@ const TimelineMilestone = ({
   activeItem,
   setActiveItem
 }) => {
-  // const [collapsed, setCollapsed ] = useState(true)
-
   async function submit() {
     let props = {
       id 
@@ -92,6 +90,7 @@ const TimelineMilestone = ({
           updateCallback()
         }
         submitEditName()
+        setActiveItem('milestone' + id + editName)
       }
     }, 2000)
 
@@ -143,6 +142,15 @@ const TimelineMilestone = ({
 
     return () => clearTimeout(delayDebounceFn)
   }, [editDate])
+
+
+  const [emojis, setEmojis] = useState([
+
+  ])
+
+  const incrementEmoji = () => {
+
+  }
 
   return (
     <S.TimelineMilestone onClick={(e) => handleClick(e)} >
@@ -219,6 +227,7 @@ const TimelineMilestone = ({
               complete={task.completed}
               setActiveItem={setActiveItem}
               activeItem={activeItem}
+              priority={task.priority}
             /> 
           ) : null
         }

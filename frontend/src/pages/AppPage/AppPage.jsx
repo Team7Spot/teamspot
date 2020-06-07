@@ -30,7 +30,7 @@ const AppPage = ({ classes, login, register, ...rest }) => {
       setProjectComponents(apiProjectComponents)
       setMilestones(apiProjectComponents[activeComponentIndex ? activeComponentIndex : 0].milestones)
       setActiveComponent(apiProjectComponents[activeComponentIndex ? activeComponentIndex : 0].component_name)
-      setActiveComponentId(apiProjectComponents[activeComponentIndex ? activeComponentIndex : 0].project_component_id)
+      if (!activeComponent) { setActiveComponentId(apiProjectComponents[0].project_component_id) }
     } 
     catch (error) {}  
   }

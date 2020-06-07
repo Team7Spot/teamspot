@@ -57,6 +57,8 @@ const Timeline = ({ milestones, updateCallback, activeComponent, activeComponent
         deadline
       }
     }
+
+    console.log(props)
     
     try {
       type === 'Milestone' ?  await ProjectAPI.createMilestone(props) : await ProjectAPI.createTask(props)
