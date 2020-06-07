@@ -10,6 +10,10 @@ const create = require("./tasks/create");
 const del = require("./tasks/delete");
 const update = require("./tasks/update");
 const requireAuth = require("../middleware/auth/verify");
+const get = require("./tasks/getComments");
+const send = require("./tasks/addComment");
+const getEmojis = require("./tasks/getEmojis");
+const reaction = require("./tasks/reaction");
 
 router.get("/", async function(req, res, next) {
   try {
@@ -27,5 +31,9 @@ router.use("/create", requireAuth, create);
 router.use("/complete", requireAuth, complete);
 router.use("/delete", requireAuth, del);
 router.use("/update", requireAuth, update);
+router.use("/sendComment", requireAuth, send);
+router.use("/getComments", requireAuth, get)
+router.use("/getReactions", requireAuth, getEmojis);
+router.use("/addReaction", requireAuth, reaction);
 
 module.exports = router;
