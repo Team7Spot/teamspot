@@ -6,7 +6,7 @@ import React, { useRef, useState, useEffect } from "react"
 
 import EmojiButton from '../../EmojiButton/EmojiButton'
 
-const TimelineTask = ({ name, description, deadline, id, updateCallback, complete, activeItem, setActiveItem, priority }) => {
+const TimelineTask = ({ name, description, deadline, id, updateCallback, complete, activeItem, setActiveItem, priority, taskEmojis }) => {
 
   const [editing, setEditing] = useState(false)
 
@@ -165,6 +165,32 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
       count: 0
     }
   ])
+
+  useEffect(() => {
+    if (taskEmojis) { 
+      const emojiMapping = ['👏', '🎉', '🔥', '👀', '❤️', '😍', '💵']
+      setEmojis(JSON.parse(taskEmojis).map((emojiCount, index) => { return { emoji: emojiMapping[index], count: emojiCount } }))
+    }
+  }, [])
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      async function submitEmojis() {
+        try {
+          await ProjectAPI.setTaskEmojis({
+            id, 
+            emojis: JSON.stringify(emojis.map(emoji => emoji.count))
+          })
+        } catch(e) { }
+        updateCallback()
+      }
+      submitEmojis()
+      console.log(JSON.stringify(emojis.map(emoji => emoji.count)))
+    }, 2000)
+
+    return () => clearTimeout(delayDebounceFn)
+  }, [emojis])
+
 
   const incrementEmoji = emojiChar => {
     setEmojis(emojis.map(emoji => emoji.emoji === emojiChar ? { count: emoji.count++, ...emoji } : emoji))
