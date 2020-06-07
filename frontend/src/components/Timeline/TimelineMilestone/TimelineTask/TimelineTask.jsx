@@ -135,6 +135,41 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
     return () => clearTimeout(delayDebounceFn)
   }, [editDate])
 
+  const [emojis, setEmojis] = useState([
+    {
+      emoji: '👏',
+      count: 0
+    },
+    {
+      emoji: '🎉',
+      count: 0
+    },
+    {
+      emoji: '🔥',
+      count: 0
+    },
+    {
+      emoji: '👀',
+      count: 0
+    },
+    {
+      emoji: '❤️',
+      count: 0
+    },
+    {
+      emoji: '😍',
+      count: 0
+    },
+    {
+      emoji: '💵',
+      count: 0
+    }
+  ])
+
+  const incrementEmoji = emojiChar => {
+    setEmojis(emojis.map(emoji => emoji.emoji === emojiChar ? { count: emoji.count++, ...emoji } : emoji))
+  }
+
   return (
     <S.TimelineTask onClick={handleClick} active={collapsed} id={'task' + id + name}>
       <S.Header active={collapsed}>
@@ -190,12 +225,18 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
 
       {
         collapsed ? null :
-        <S.EmojiButtons>
-          <EmojiButton emoji={'👏'} reactions={4} />
-          <EmojiButton emoji={'🎉'} reactions={4} />
-          <EmojiButton emoji={'👍'} reactions={4} />
-          <EmojiButton emoji={'❤️'} reactions={4} />
-          <EmojiButton emoji={'😍'} reactions={4} />
+        <S.EmojiButtons onClick={e => e.stopPropagation()}>
+          {
+            emojis.map(emoji => 
+              <EmojiButton 
+                emoji={emoji.emoji} 
+                reactions={emoji.count} 
+                onClickFunction={() => incrementEmoji(emoji.emoji)}
+                count={emoji.count} 
+                complete={complete === 1 ? true : false}
+              />
+            )
+          }
         </S.EmojiButtons>
       }
 
