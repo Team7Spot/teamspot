@@ -12,7 +12,7 @@ router.post("", async (req, res, next) => {
     return;
   } try {
     const con = req.app.get("databaseConnection");
-    const rows = await sqlwrapper.milestoneReaction(con, req.body.id, req.body.emojis);
+    const rows = await sqlwrapper.milestoneReaction(con, req.body.id, JSON.stringify(req.body.emojis));
     res.status(200);
     res.json({emojis: rows.emoji})
   } catch (err) {
