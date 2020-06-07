@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const TimelineTask = styled.div`
   display: flex;
   flex-wrap: wrap;
-  position: relative;
+  
   right: -64px;
   width: calc(100% - 96px);
   margin-top: 16px;
   padding: 16px;
+  margin-left: 64px;
   border-radius: 8px;
   background: var(--CardColor);
   box-shadow: ${props => props.active ? 'inset 0 0 0 1px #ccc' : 'inset 0 0 0 1px var(--HighlightColor)'};
