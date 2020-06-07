@@ -172,6 +172,9 @@ module.exports = {
   milestoneReaction: (connection, id, emojis) => {
     return milestoneWrapper.addReaction(connection, id, emojis);
   },
+  getEmojisMilestone: (connection, id) => {
+    return milestoneWrapper.getEmojis(connection, id);
+  },
   //task functions
   createTask: (
     connection,
@@ -233,6 +236,9 @@ module.exports = {
   },
   taskReaction: (connection, id, emojis) => {
     return taskWrapper.addReaction(connection, id, emojis);
+  },
+  getEmojisTask: (connection, id) => {
+    return taskWrapper.getEmojis(connection, id);
   },
   //user functions
   userExists: (connection, email) => {
