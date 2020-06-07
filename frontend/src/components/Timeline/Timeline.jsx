@@ -146,6 +146,7 @@ const Timeline = ({ milestones, updateCallback, activeComponent, activeComponent
               setActiveItem={setActiveItem}
               activeItem={activeItem}
               priority={milestone.priority}
+              milestoneEmojis={milestone.emoji}
             />
           )
         }

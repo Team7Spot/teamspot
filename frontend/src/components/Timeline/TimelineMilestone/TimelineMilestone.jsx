@@ -17,7 +17,8 @@ const TimelineMilestone = ({
   tasks,
   complete,
   activeItem,
-  setActiveItem
+  setActiveItem,
+  milestoneEmojis
 }) => {
   async function submit() {
     let props = {
@@ -175,6 +176,31 @@ const TimelineMilestone = ({
     }
   ])
 
+  useEffect(() => {
+    if (milestoneEmojis) { 
+      const emojiMapping = ['👏', '🎉', '🔥', '👀', '❤️', '😍', '💵']
+      setEmojis(JSON.parse(milestoneEmojis).map((emojiCount, index) => { return { emoji: emojiMapping[index], count: emojiCount } }))
+    }
+  }, [])
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      async function submitEmojis() {
+        try {
+          await ProjectAPI.setMilestoneEmojis({
+            id, 
+            emojis: JSON.stringify(emojis.map(emoji => emoji.count))
+          })
+        } catch(e) { }
+        updateCallback()
+      }
+      submitEmojis()
+      console.log(JSON.stringify(emojis.map(emoji => emoji.count)))
+    }, 2000)
+
+    return () => clearTimeout(delayDebounceFn)
+  }, [emojis])
+
   const incrementEmoji = emojiChar => {
     setEmojis(emojis.map(emoji => emoji.emoji === emojiChar ? { count: emoji.count++, ...emoji } : emoji))
   }
@@ -258,6 +284,7 @@ const TimelineMilestone = ({
               setActiveItem={setActiveItem}
               activeItem={activeItem}
               priority={task.priority}
+              taskEmojis={task.emoji}
             /> 
           ) : null
         }

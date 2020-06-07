@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS milestone (
     description			TEXT		NOT NULL,
     deadline			DATE,
 	comments			TEXT,
-	emoji				CHAR(1) CHARACTER SET utf32,
+	emoji				VARCHAR(1024),
 	completed			INT,
 
   CONSTRAINT
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS task (
     description			TEXT		NOT NULL,
     deadline			DATE,
 	comments			TEXT,
-    emoji				CHAR(1) CHARACTER SET utf32,
+    emoji				VARCHAR(1024),
 	completed			INT,
 
   CONSTRAINT

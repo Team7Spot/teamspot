@@ -215,4 +215,76 @@ export default class ProjectAPI {
       throw new errors.UnexpectedError();
     }
   }
+
+  static async setMilestoneEmojis(props) {
+    if (!Authentication.loggedIn()) return;
+    const res = await fetch(
+      `${Config.base_url}/milestones/addReaction`,
+      {
+        method: "POST",
+        headers: Authentication.withJWT(),
+        body: JSON.stringify(props)
+      }
+    );
+    if (res.ok) {
+      const json = await res.json();
+      return json.generationSuccess;
+    } else {
+      throw new errors.UnexpectedError();
+    }
+  }
+
+  static async setTaskEmojis(props) {
+    if (!Authentication.loggedIn()) return;
+    const res = await fetch(
+      `${Config.base_url}/tasks/addReaction`,
+      {
+        method: "POST",
+        headers: Authentication.withJWT(),
+        body: JSON.stringify(props)
+      }
+    );
+    if (res.ok) {
+      const json = await res.json();
+      return json.generationSuccess;
+    } else {
+      throw new errors.UnexpectedError();
+    }
+  }
+
+  static async getMilestoneEmojis(props) {
+    if (!Authentication.loggedIn()) return;
+    const res = await fetch(
+      `${Config.base_url}/milestones/getReactions`,
+      {
+        method: "GET",
+        headers: Authentication.withJWT(),
+        body: JSON.stringify(props)
+      }
+    );
+    if (res.ok) {
+      const json = await res.json();
+      return json.generationSuccess;
+    } else {
+      throw new errors.UnexpectedError();
+    }
+  }
+
+  static async getTaskEmojis(props) {
+    if (!Authentication.loggedIn()) return;
+    const res = await fetch(
+      `${Config.base_url}/tasks/getReactions`,
+      {
+        method: "GET",
+        headers: Authentication.withJWT(),
+        body: JSON.stringify(props)
+      }
+    );
+    if (res.ok) {
+      const json = await res.json();
+      return json.generationSuccess;
+    } else {
+      throw new errors.UnexpectedError();
+    }
+  }
 }

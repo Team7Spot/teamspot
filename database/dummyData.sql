@@ -202,6 +202,7 @@ INSERT INTO MILESTONE VALUES(
   "use react to build a user interface",
   DATE("2020-06-5"),
   null,
+  "",
   0
 );
 
@@ -213,6 +214,7 @@ INSERT INTO MILESTONE VALUES(
   "use express to build a server to handle requests",
   DATE("2020-06-1"),
   null,
+  "",
   0
 );
 
@@ -224,6 +226,7 @@ INSERT INTO MILESTONE VALUES(
   "use mysql workbench to make database",
   DATE("2020-06-9"),
   null,
+  "",
   0
 );
 
@@ -236,6 +239,7 @@ INSERT INTO TASK VALUES(
   "npx create-react-app my-app",
   DATE("2020-05-18"),
   null,
+  "",
   0
 );
 INSERT INTO TASK VALUES(
@@ -246,6 +250,7 @@ INSERT INTO TASK VALUES(
   "make reusable react components",
   DATE("2020-05-20"),
   null,
+  "",
   0
 );
 INSERT INTO TASK VALUES(
@@ -256,6 +261,7 @@ INSERT INTO TASK VALUES(
   "google auth token ",
   DATE("2020-05-25"),
   null,
+  "",
   0
 );
 
@@ -267,6 +273,7 @@ INSERT INTO TASK VALUES(
   "express create app",
   DATE("2020-05-18"),
   null,
+  "",
   0
 );
 INSERT INTO TASK VALUES(
@@ -277,6 +284,7 @@ INSERT INTO TASK VALUES(
   "write them in javascript",
   DATE("2020-05-22"),
   null,
+  "",
   0
 );
 INSERT INTO TASK VALUES(
@@ -287,6 +295,7 @@ INSERT INTO TASK VALUES(
   "use frosting",
   DATE("2020-05-18"),
   null,
+  "",
   0
 );
 
@@ -298,6 +307,7 @@ INSERT INTO TASK VALUES(
   "Use mysql workbench to sql it up",
   DATE("2020-05-18"),
   null,
+  "",
   0
 );
 INSERT INTO TASK VALUES(
@@ -308,6 +318,7 @@ INSERT INTO TASK VALUES(
   "download mysql server",
   DATE("2020-05-18"),
   null,
+  "",
   0
 );
 INSERT INTO TASK VALUES(
@@ -318,6 +329,7 @@ INSERT INTO TASK VALUES(
   "abcdefg......",
   DATE("2020-05-28"),
   null,
+  "",
   0
 );
 
