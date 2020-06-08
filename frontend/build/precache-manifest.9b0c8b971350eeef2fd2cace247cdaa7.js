@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "3dbe10bbb3d11c521731",
+    "revision": "f0c211147ab604b9cd1f",
     "url": "/static/css/main.6538d77f.chunk.css"
   },
   {
-    "revision": "3dbe10bbb3d11c521731",
-    "url": "/static/js/main.7b832d48.chunk.js"
+    "revision": "f0c211147ab604b9cd1f",
+    "url": "/static/js/main.e853ff8b.chunk.js"
   },
   {
     "revision": "42ac5946195a7306e2a5",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/static/media/teamspot-logo.b96841c2.svg"
   },
   {
-    "revision": "99f486cd4b4ecfaef1178728d12f00e9",
+    "revision": "8767f2385ca84f76c96e58ae3db54c57",
     "url": "/index.html"
   }
 ];
