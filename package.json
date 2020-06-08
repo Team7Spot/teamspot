@@ -1,0 +1,20 @@
+{
+  "name": "teamspot",
+  "version": "1.0.0",
+  "description": "A project management tool",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && node server.js",
+    "test": "npm jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team7Spot/teamspot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Team7Spot/teamspot/issues"
+  },
+  "homepage": "https://github.com/Team7Spot/teamspot#readme"
+}
