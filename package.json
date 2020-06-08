@@ -16,5 +16,22 @@
   "bugs": {
     "url": "https://github.com/Team7Spot/teamspot/issues"
   },
-  "homepage": "https://github.com/Team7Spot/teamspot#readme"
+  "homepage": "https://github.com/Team7Spot/teamspot#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.8",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "google-auth-library": "^3.1.0",
+    "googleapis": "^37.2.0",
+    "jsonwebtoken": "^8.3.0",
+    "log4js": "^3.0.5",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "jest": "^24.1.0"
+  }
 }
