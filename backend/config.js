@@ -10,11 +10,16 @@ module.exports = {
     expiresIn: process.env.AUTH_EXP || "15m",
     googleAuthClientId: process.env.AUTH_GOOGLE_CLIENT_ID
   },
+  /*databaseConfig: {
+    host: "localhost",//"us-cdbr-east-05.cleardb.net",
+    username: "root",//"b0b8f4e06a1d5d",
+    password: "root",//"9b04dc75",
+    schema: "teamspot"//"heroku_1a9791c63e5f3f1"
+  }*/
   databaseConfig: {
     host: "us-cdbr-east-05.cleardb.net",
     username: "b0b8f4e06a1d5d",
     password: "9b04dc75",
-    //schema: "teamspot",
     schema: "heroku_1a9791c63e5f3f1"
   }
 };
