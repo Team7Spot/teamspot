@@ -11,9 +11,10 @@ module.exports = {
     googleAuthClientId: process.env.AUTH_GOOGLE_CLIENT_ID
   },
   databaseConfig: {
-    host: "us-cdbr-east-05.cleardb.net",
-    username: "b0b8f4e06a1d5d",
-    password: "9b04dc75",
-    db: "heroku_1a9791c63e5f3f1"
+    host: process.env.DB_HOST || "localhost",
+    username: process.env.DB_USERNAME || "root",
+    password: process.env.DB_PASSWORD || "root",
+    port: process.env.DB_PORT || "3306",
+    schema: process.env.DB_NAME || "teamspot"
   }
 };
