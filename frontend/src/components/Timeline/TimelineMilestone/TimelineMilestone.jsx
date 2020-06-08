@@ -7,13 +7,13 @@ import React, { useRef, useState, useEffect } from "react"
 import TimelineTask from './TimelineTask/TimelineTask'
 import EmojiButton from '../EmojiButton/EmojiButton'
 
-const TimelineMilestone = ({ 
-  name, 
-  description, 
+const TimelineMilestone = ({
+  name,
+  description,
   deadline,
-  priority, 
-  id, 
-  updateCallback, 
+  priority,
+  id,
+  updateCallback,
   tasks,
   complete,
   activeItem,
@@ -22,12 +22,12 @@ const TimelineMilestone = ({
 }) => {
   async function submit() {
     let props = {
-      id 
+      id
     }
     console.log(id)
     try {
       await ProjectAPI.markMilestoneComplete(props)
-    } 
+    }
     catch(e) { }
 
     updateCallback()
@@ -44,14 +44,14 @@ const TimelineMilestone = ({
     e.stopPropagation()
     async function deleteMilestone() {
       let props = {
-        id 
+        id
       }
       console.log(id)
       try {
         await ProjectAPI.deleteMilestone(props)
-      } 
+      }
       catch(e) { }
-  
+
       updateCallback()
     }
     deleteMilestone()
@@ -79,15 +79,15 @@ const TimelineMilestone = ({
         async function submitEditName() {
           try {
             await ProjectAPI.editMilestone({
-              id, 
-              milestone_name: editName, 
-              priority, 
-              description, 
+              id,
+              milestone_name: editName,
+              priority,
+              description,
               deadline: new Date(deadline).toISOString().split('T')[0]
             })
-          } 
+          }
           catch(e) { }
-      
+
           updateCallback()
         }
         submitEditName()
@@ -104,15 +104,15 @@ const TimelineMilestone = ({
         async function submitEditDescription() {
           try {
             await ProjectAPI.editMilestone({
-              id, 
-              milestone_name: name, 
-              priority, 
-              description: editDescription, 
+              id,
+              milestone_name: name,
+              priority,
+              description: editDescription,
               deadline: new Date(deadline).toISOString().split('T')[0]
             })
-          } 
+          }
           catch(e) { }
-      
+
           updateCallback()
         }
         submitEditDescription()
@@ -128,10 +128,10 @@ const TimelineMilestone = ({
         async function submitEditDate() {
           try {
             await ProjectAPI.editMilestone({
-              id, 
-              milestone_name: name, 
-              priority, 
-              description, 
+              id,
+              milestone_name: name,
+              priority,
+              description,
               deadline: editDate
             })
           } catch(e) { }
@@ -176,19 +176,19 @@ const TimelineMilestone = ({
     }
   ])
 
-  useEffect(() => {
-    if (milestoneEmojis) { 
+  /*useEffect(() => {
+    if (milestoneEmojis) {
       const emojiMapping = ['👏', '🎉', '🔥', '👀', '❤️', '😍', '💵']
       setEmojis(JSON.parse(milestoneEmojis).map((emojiCount, index) => { return { emoji: emojiMapping[index], count: emojiCount } }))
     }
-  }, [])
+  }, [])*/
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       async function submitEmojis() {
         try {
           await ProjectAPI.setMilestoneEmojis({
-            id, 
+            id,
             emojis: JSON.stringify(emojis.map(emoji => emoji.count))
           })
         } catch(e) { }
@@ -210,31 +210,31 @@ const TimelineMilestone = ({
       <S.MilestoneBackground>
         <S.Header active={collapsed}>
           {
-            editing ? 
+            editing ?
             <S.EditName
               type='text'
               onClick={e => e.stopPropagation()}
               onChange={e => setEditName(e.target.value)}
               value={editName || name}
-            /> 
+            />
             : <S.Name>{name}&nbsp;</S.Name>
           }
           {
-            editing 
-            ? <S.Delete title='DELETE' onClick={e => handleDeleteClick(e)}>❌</S.Delete> 
+            editing
+            ? <S.Delete title='DELETE' onClick={e => handleDeleteClick(e)}>❌</S.Delete>
             : <S.Complete type='checkbox' onClick={handleCompleteClick} checked={complete === 1 ? true : false} />
           }
-          
+
           <S.Spacer />
-          
+
           {
-            editing ? 
+            editing ?
             <S.EditDate
               type='date'
               onClick={e => e.stopPropagation()}
               onChange={e => setEditDate(e.target.value)}
               value={editDate || new Date(deadline).toISOString().split('T')[0]}
-            /> 
+            />
             : <S.Deadline>{new Date(deadline).toLocaleDateString("en-US")}</S.Deadline>
           }
 
@@ -245,25 +245,25 @@ const TimelineMilestone = ({
 
         <S.Content active={collapsed}>
           {
-            collapsed ? null : 
+            collapsed ? null :
               editing ?
-              <S.EditDescription 
+              <S.EditDescription
                 type='textarea'
                 onClick={e => e.stopPropagation()}
                 onChange={e => setEditDescription(e.target.value)}
                 value={editDescription || description}
               />
-              : 
+              :
             <S.TimelineDescription>{description}</S.TimelineDescription>
           }
           <S.EmojiButtons onClick={e => e.stopPropagation()}>
             {
-              emojis.map(emoji => 
-                <EmojiButton 
-                  emoji={emoji.emoji} 
-                  reactions={emoji.count} 
+              emojis.map(emoji =>
+                <EmojiButton
+                  emoji={emoji.emoji}
+                  reactions={emoji.count}
                   onClickFunction={() => incrementEmoji(emoji.emoji)}
-                  count={emoji.count} 
+                  count={emoji.count}
                   complete={complete === 1 ? true : false}
                 />
               )
@@ -273,7 +273,7 @@ const TimelineMilestone = ({
       </S.MilestoneBackground>
       <S.Tasks>
         {
-          tasks && !collapsed ? tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline)).map(task => 
+          tasks && !collapsed ? tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline)).map(task =>
             <TimelineTask
               name={task.task_name}
               deadline={task.deadline}
@@ -285,7 +285,7 @@ const TimelineMilestone = ({
               activeItem={activeItem}
               priority={task.priority}
               taskEmojis={task.emoji}
-            /> 
+            />
           ) : null
         }
       </S.Tasks>
