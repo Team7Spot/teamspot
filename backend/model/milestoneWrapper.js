@@ -160,7 +160,7 @@ module.exports = {
     time_stamp,
     content
   ) => {
-    let query = "INSERT INTO task_comments(milestone_id, user_id, user_email, time_stamp, content) VALUES(?, ?, ?, ?, ?);";
+    let query = "INSERT INTO milestone_comments(milestone_id, user_id, user_email, time_stamp, content) VALUES(?, ?, ?, ?, ?);";
     return new Promise((res, rej) => {
       connection.query(query,
       [
