@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 const sqlwrapper = require("../../model/wrapper");
-const getComment = require("./id/getComments")
+const getComments = require("./id/getComments")
 
 router.get("/:id", async function(req, res, next) {
   try {
