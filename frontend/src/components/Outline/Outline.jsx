@@ -15,16 +15,17 @@ const Outline = ({ milestones, activeComponent, setActiveItem, activeItem }) => 
       </S.Header>
 
       <S.Content>
-        {milestones.sort((a, b) => new Date(a.deadline) - new Date(b.deadline)).map(milestone => (
-          <S.MilestoneContainer>
+        {milestones.sort((a, b) => new Date(a.deadline) - new Date(b.deadline)).map((milestone, index) => (
+          <S.MilestoneContainer key={milestone.milestone_name + index}>
             <S.Milestone 
               active={activeItem === ('milestone' + milestone.id + milestone.milestone_name)}
               onClick={() => handleClick('milestone', milestone.id, milestone.milestone_name)}
             >
               {`${milestone.milestone_name}${milestone.completed ? ' ✅' : ''}`}
             </S.Milestone>
-              {milestone.tasks.map(task => (
+              {milestone.tasks.map((task, index) => (
                 <S.Task
+                  key={task.task_name + index}
                   active={activeItem === ('task' + task.id + task.task_name)}
                   onClick={() => handleClick('task', task.id, task.task_name)}
                 >

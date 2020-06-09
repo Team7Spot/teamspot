@@ -24,7 +24,6 @@ const TimelineMilestone = ({
     let props = {
       id
     }
-    console.log(id)
     try {
       await ProjectAPI.markMilestoneComplete(props)
     }
@@ -46,7 +45,6 @@ const TimelineMilestone = ({
       let props = {
         id
       }
-      console.log(id)
       try {
         await ProjectAPI.deleteMilestone(props)
       }
@@ -195,7 +193,6 @@ const TimelineMilestone = ({
         updateCallback()
       }
       submitEmojis()
-      console.log(JSON.stringify(emojis.map(emoji => emoji.count)))
     }, 2000)
 
     return () => clearTimeout(delayDebounceFn)
@@ -222,7 +219,7 @@ const TimelineMilestone = ({
           {
             editing
             ? <S.Delete title='DELETE' onClick={e => handleDeleteClick(e)}>❌</S.Delete>
-            : <S.Complete type='checkbox' onClick={handleCompleteClick} checked={complete === 1 ? true : false} />
+            : <S.Complete type='checkbox' onClick={handleCompleteClick} defaultChecked={complete === 1 ? true : false} />
           }
 
           <S.Spacer />
@@ -258,8 +255,9 @@ const TimelineMilestone = ({
           }
           <S.EmojiButtons onClick={e => e.stopPropagation()}>
             {
-              emojis.map(emoji =>
+              emojis.map((emoji, index) =>
                 <EmojiButton
+                  key={'emoji' + index}
                   emoji={emoji.emoji}
                   reactions={emoji.count}
                   onClickFunction={() => incrementEmoji(emoji.emoji)}

@@ -32,7 +32,7 @@ const Comments = () => {
 
       <S.Content>
         {
-          comments.map(comment => <Comment name={comment.name} comment={comment.comment} date={comment.date} />)
+          comments.map((comment, index) => <Comment key={comment.name + index} name={comment.name} comment={comment.comment} date={comment.date} />)
         }
         
       </S.Content>
