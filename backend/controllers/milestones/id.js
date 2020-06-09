@@ -22,6 +22,6 @@ router.use("/:id", (req, res, next) => {
   next();
 });
 
-router.use("/getComments", getComments);
+router.use("/:id/getComments", getComments);
 
 module.exports = router;
