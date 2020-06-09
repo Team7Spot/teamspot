@@ -9,7 +9,6 @@ const create = require("./milestones/create");
 const del = require("./milestones/delete");
 const update = require("./milestones/update");
 const requireAuth = require("../middleware/auth/verify");
-const get = require("./milestones/getComments");
 const send = require("./milestones/addComment");
 const getEmojis = require("./milestones/getEmojis");
 const reaction = require("./milestones/reaction");
@@ -27,7 +26,6 @@ router.get("/", async (req, res, next) => {
 });
 
 router.use("/sendComment", requireAuth, send);
-router.use("/getComments", requireAuth, get);
 router.use("/create", requireAuth, create);
 router.use("/complete", requireAuth, complete);
 router.use("/delete", requireAuth, del);
