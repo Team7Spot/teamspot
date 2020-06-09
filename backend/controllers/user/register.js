@@ -33,7 +33,7 @@ router.post("", async (req, res, next) => {
       {
         //email: req.body.email,
         //username: username
-        id: email
+        id: req.body.email
       },
       req.app.get("authConfig").authKey,
       { expiresIn: req.app.get("authConfig").expiresIn }
