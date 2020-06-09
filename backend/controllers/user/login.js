@@ -20,9 +20,13 @@ router.post("", async (req, res, next) => {
       req.body.password
     );
     if (validCredentials) {
+      const username = await sqlwrapper.getUsername(c, req.body.email);
+      //const id = await sqlwrapper.getUserID(c, req.body.email);
       const token = jwt.sign(
         {
-          id: req.body.email
+          email: req.body.email,
+          username: username
+          //id: id
         },
         req.app.get("authConfig").authKey,
         { expiresIn: req.app.get("authConfig").expiresIn }

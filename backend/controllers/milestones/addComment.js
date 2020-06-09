@@ -11,6 +11,7 @@ router.post("", async (req, res, next) => {
       con,
       req.body.milestone_id,
       req.body.user_id,
+      req.body.user_email,
       req.body.time_stamp,
       req.body.content
     );

@@ -98,5 +98,29 @@ module.exports = {
         }
       });
     });
+  },
+  getUsername: (connection, email) => {
+    const query = `SELECT username FROM users WHERE email = "${email}";`;
+    return new Promise((res, rej) => {
+      connection.query(query, (err, rows, fields) => {
+        if (err) {
+          rej(err);
+        } else {
+          res();
+        }
+      });
+    });
+  },
+  getUserID: (connection, email) => {
+    const query = `SELECT id FROM users WHERE email = "${email}";`;
+    return new Promise((res, rej) => {
+      connection.query(query, (err, rows, fields) => {
+        if (err) {
+          rej(err);
+        } else {
+          res();
+        }
+      });
+    });
   }
 };
