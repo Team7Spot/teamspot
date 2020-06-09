@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS project (
     deadline				DATE,
     project_description		TEXT,
 	comments				TEXT,
-	emoji				CHAR(1) CHARACTER SET utf32,
+	emoji				VARCHAR(1024) CHARACTER SET utf32,
 	completed				INT,
 
   CONSTRAINT pk_project
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS project_component (
 	component_name	VARCHAR(64),
 	project_id 		INT,
     comments    	TEXT,
-	emoji			CHAR(1) CHARACTER SET utf32,
+	emoji			VARCHAR(1024) CHARACTER SET utf32,
 
 	CONSTRAINT pk_project_component
 		PRIMARY KEY(id),
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS milestone (
     description			TEXT		NOT NULL,
     deadline			DATE,
 	comments			TEXT,
-	emoji				VARCHAR(1024),
+	emoji				VARCHAR(1024) CHARACTER SET utf8mb4,
 	completed			INT,
 
   CONSTRAINT
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS task (
     description			TEXT		NOT NULL,
     deadline			DATE,
 	comments			TEXT,
-    emoji				VARCHAR(1024),
+    emoji				VARCHAR(1024) CHARACTER SET utf8mb4,
 	completed			INT,
 
   CONSTRAINT
@@ -149,9 +149,47 @@ VALUES (1, 'name', NULL, 1, 'description', '2016-09-13 08:02:29', 'comments', 'ð
 SELECT * FROM task;
 */
 
+CREATE TABLE IF NOT EXISTS milestone_comments (
+	id						INT NOT NULL UNIQUE AUTO_INCREMENT,
+	milestone_id			INT,
+	user_id 				INT(10),
+	time_stamp				DATE,
+	content					TEXT,
+
+	CONSTRAINT
+		PRIMARY KEY(id),
+	CONSTRAINT
+		FOREIGN KEY(user_id)
+		REFERENCES users(id)
+		ON DELETE CASCADE,
+	CONSTRAINT
+		FOREIGN KEY(milestone_id)
+		REFERENCES milestone(id)
+		ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS task_comments (
+	id						INT NOT NULL UNIQUE AUTO_INCREMENT,
+	task_id					INT,
+	user_id 				INT(10),
+	time_stamp				DATE,
+	content					TEXT,
+
+	CONSTRAINT
+		PRIMARY KEY(id),
+	CONSTRAINT
+		FOREIGN KEY(user_id)
+		REFERENCES users(id)
+		ON DELETE CASCADE,
+	CONSTRAINT
+		FOREIGN KEY(task_id)
+		REFERENCES task(id)
+		ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS assigned (
-    user_id		INT(10),
-    task_id		INT,
+    user_id			INT(10),
+    task_id			INT,
     milestone_id	INT,
     project_id		INT,
 
