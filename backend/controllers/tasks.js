@@ -14,8 +14,9 @@ const get = require("./tasks/getComments");
 const send = require("./tasks/addComment");
 const getEmojis = require("./tasks/getEmojis");
 const reaction = require("./tasks/reaction");
+const id = require("./tasks/id");
 
-router.get("/", async function(req, res, next) {
+router.get("/", async (req, res, next) => {
   try {
     const c = req.app.get("databaseConnection");
     const results = await sqlwrapper.getTasks(c);
@@ -35,5 +36,6 @@ router.use("/sendComment", requireAuth, send);
 router.use("/getComments", requireAuth, get)
 router.use("/getReactions", requireAuth, getEmojis);
 router.use("/addReaction", requireAuth, reaction);
+router.use("/id", id);
 
 module.exports = router;
