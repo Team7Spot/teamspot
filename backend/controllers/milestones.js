@@ -13,8 +13,9 @@ const get = require("./milestones/getComments");
 const send = require("./milestones/addComment");
 const getEmojis = require("./milestones/getEmojis");
 const reaction = require("./milestones/reaction");
+const id = require("./milestones/id");
 
-router.get("/", async function(req, res, next) {
+router.get("/", async (req, res, next) => {
   try {
     const c = req.app.get("databaseConnection");
     const results = await sqlwrapper.getMilestones(c);
@@ -33,5 +34,6 @@ router.use("/delete", requireAuth, del);
 router.use("/update", requireAuth, update);
 router.use("/getReactions", requireAuth, getEmojis);
 router.use("/addReaction", requireAuth, reaction);
+router.use("/id", id);
 
 module.exports = router;
