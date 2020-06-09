@@ -163,8 +163,8 @@ module.exports = {
   completeMilestone: (connection, id, status) => {
     return milestoneWrapper.complete(connection, id, status);
   },
-  getCommments: (connection, id) => {
-    return milestoneWrapper.getCommments(connection, id);
+  getComments: (connection, id) => {
+    return milestoneWrapper.getComments(connection, id);
   },
   sendCommentMilestone: (
     connection,

@@ -25,7 +25,7 @@ router.get("/", async function(req, res, next) {
         components[component].milestones[milestone].tasks = JSON.parse(JSON.stringify(t));
         components[component].milestones[milestone].comments = JSON.parse(JSON.stringify(milestonecomments));
         for (let task in components[component].milestones[milestone].tasks) {
-          var taskcomments = await sqlwrapper.getCommentsMilestone(con, components[component].milestones[milestone].tasks[task].id)
+          var taskcomments = await sqlwrapper.getCommentsTask(con, components[component].milestones[milestone].tasks[task].id)
           components[component].milestones[milestone].tasks[task].comments = JSON.parse(JSON.stringify(taskcomments));
         }
       }
