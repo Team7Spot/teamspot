@@ -14,7 +14,6 @@ module.exports = {
     host: "us-cdbr-east-05.cleardb.net",
     username: "b0b8f4e06a1d5d",
     password: "9b04dc75",
-    //schema: "teamspot"//"9b04dc75",
-    db: "heroku_1a9791c63e5f3f1"
+    schema: "heroku_1a9791c63e5f3f1"
   }
 };

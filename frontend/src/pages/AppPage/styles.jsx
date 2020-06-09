@@ -9,4 +9,5 @@ export const HeaderContainer = styled.div`
   position: absolute;
   right: 0;
   height: 64px;
+  z-index: 1;
 `;
