@@ -3,7 +3,7 @@ USE teamspot;
 
 CREATE TABLE IF NOT EXISTS users
 (
-	id INT(10) 		NOT NULL UNIQUE AUTO_INCREMENT,
+	id 				INT(10) NOT NULL UNIQUE AUTO_INCREMENT,
 	username 		VARCHAR(64),
 	email 			VARCHAR(255) NOT NULL UNIQUE,
 	password 		VARCHAR(64),
@@ -153,6 +153,7 @@ CREATE TABLE IF NOT EXISTS milestone_comments (
 	id						INT NOT NULL UNIQUE AUTO_INCREMENT,
 	milestone_id			INT,
 	user_id 				INT(10),
+	user_email				VARCHAR(255) NOT NULL UNIQUE,
 	time_stamp				DATE,
 	content					TEXT,
 
@@ -162,6 +163,9 @@ CREATE TABLE IF NOT EXISTS milestone_comments (
 		FOREIGN KEY(user_id)
 		REFERENCES users(id)
 		ON DELETE CASCADE,
+	CONSTRAINT
+		FOREIGN KEY(user_email)
+		REFERENCES users(email),
 	CONSTRAINT
 		FOREIGN KEY(milestone_id)
 		REFERENCES milestone(id)
@@ -172,6 +176,7 @@ CREATE TABLE IF NOT EXISTS task_comments (
 	id						INT NOT NULL UNIQUE AUTO_INCREMENT,
 	task_id					INT,
 	user_id 				INT(10),
+	user_email				VARCHAR(255) NOT NULL UNIQUE,
 	time_stamp				DATE,
 	content					TEXT,
 
@@ -181,6 +186,9 @@ CREATE TABLE IF NOT EXISTS task_comments (
 		FOREIGN KEY(user_id)
 		REFERENCES users(id)
 		ON DELETE CASCADE,
+	CONSTRAINT
+		FOREIGN KEY(user_email)
+		REFERENCES users(email),
 	CONSTRAINT
 		FOREIGN KEY(task_id)
 		REFERENCES task(id)
