@@ -170,6 +170,7 @@ module.exports = {
     connection,
     milestone_id,
     user_id,
+    user_email,
     time_stamp,
     content
   ) => {
@@ -177,6 +178,7 @@ module.exports = {
       connection,
       milestone_id,
       user_id,
+      user_email,
       time_stamp,
       content
     );
@@ -247,6 +249,7 @@ module.exports = {
     connection,
     task_id,
     user_id,
+    user_email,
     time_stamp,
     content
   ) => {
@@ -254,6 +257,7 @@ module.exports = {
       connection,
       task_id,
       user_id,
+      user_email,
       time_stamp,
       content
     );
@@ -282,6 +286,12 @@ module.exports = {
   },
   checkCredentials: (connection, email, password) => {
     return userWrapper.checkCredentials(connection, email, password);
+  },
+  getUsername: (connection, email) => {
+    return userWrapper.getUsername(connection, email);
+  },
+  getUserID: (connection, email) => {
+    return userWrapper.getUserID(connection, id);
   },
   //teams function
   createTeam: (
