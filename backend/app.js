@@ -66,7 +66,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 //app.use(cors());
 
-/*if (app.get("serverConfig").env === "development") {
+if (app.get("serverConfig").env === "development") {
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
@@ -75,7 +75,7 @@ app.use(express.json());
     );
     next();
   });
-}*/
+}
 
 app.use("/api/project", projects);
 app.use("/api/components", components);
