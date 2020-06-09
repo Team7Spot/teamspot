@@ -23,6 +23,8 @@ const AppPage = ({ classes, login, register, ...rest }) => {
   const [activeComponentIndex, setActiveComponentIndex] = useState(null)
   const [activeItem, setActiveItem] = useState(null)
 
+  const [activeMilestoneId, setActiveMilestoneId] = useState(-1)
+
   async function getComponents() {
     try {
       const apiProjectComponents = await ProjectAPI.getComponents()
@@ -37,11 +39,13 @@ const AppPage = ({ classes, login, register, ...rest }) => {
 
   useEffect(() => {getComponents()}, [])
 
+  const [UID, setUID] = useState('')
+
   useEffect(() => {
     async function getUID() {
       try {
         const userID = await Authentication.getUID()
-        console.log(userID)
+        setUID(userID)
       } 
       catch (error) {}  
     }
@@ -57,6 +61,7 @@ const AppPage = ({ classes, login, register, ...rest }) => {
   useEffect(() => {
     const newActiveComponentIndex = projectComponents.findIndex(component => component.component_name === activeComponent)
     setActiveComponentIndex(newActiveComponentIndex)
+    setActiveMilestoneId(-1)
     if (newActiveComponentIndex >= 0) {
       setMilestones(projectComponents[newActiveComponentIndex].milestones)
       setActiveComponentId(projectComponents[newActiveComponentIndex].id)
@@ -99,8 +104,16 @@ const AppPage = ({ classes, login, register, ...rest }) => {
         updateCallback={getComponents}
         setActiveItem={setActiveItem}
         activeItem={activeItem}
+        setActiveMilestoneId={setActiveMilestoneId}
       />
-      <Comments />
+      <Comments 
+        UID={UID}
+        projectComponents={projectComponents} 
+        activeComponentId={activeComponentId}
+        updateCallback={getComponents}
+        activeItem={activeItem}
+        activeMilestoneId={activeMilestoneId}
+      />
     </S.AppPage>
   )
 }

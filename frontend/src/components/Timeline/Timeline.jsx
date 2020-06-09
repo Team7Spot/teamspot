@@ -7,7 +7,7 @@ import ProjectAPI from "components/API/ProjectAPI.js"
 import Button from "../Button/Button"
 import TimelineMilestone from './TimelineMilestone/TimelineMilestone'
 
-const Timeline = ({ milestones, updateCallback, activeComponent, activeComponentId, setActiveItem, activeItem }) => {
+const Timeline = ({ milestones, updateCallback, activeComponent, activeComponentId, setActiveItem, activeItem, setActiveMilestoneId }) => {
   const [type, setType] = useState('Milestone')
 
   // useEffect(() => console.log(milestones))
@@ -66,6 +66,7 @@ const Timeline = ({ milestones, updateCallback, activeComponent, activeComponent
     catch(e) { }
 
     updateCallback()
+
   }
 
   const renderModal = () => {
@@ -147,6 +148,7 @@ const Timeline = ({ milestones, updateCallback, activeComponent, activeComponent
               activeItem={activeItem}
               priority={milestone.priority}
               milestoneEmojis={milestone.emoji}
+              setActiveMilestoneId={setActiveMilestoneId}
             />
           )
         }

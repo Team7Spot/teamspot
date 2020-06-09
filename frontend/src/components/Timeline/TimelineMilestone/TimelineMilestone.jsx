@@ -18,7 +18,8 @@ const TimelineMilestone = ({
   complete,
   activeItem,
   setActiveItem,
-  milestoneEmojis
+  milestoneEmojis,
+  setActiveMilestoneId
 }) => {
   async function submit() {
     let props = {
@@ -30,6 +31,7 @@ const TimelineMilestone = ({
     catch(e) { }
 
     updateCallback()
+
   }
 
   const [editing, setEditing] = useState(false)
@@ -51,11 +53,19 @@ const TimelineMilestone = ({
       catch(e) { }
 
       updateCallback()
+
+
     }
     deleteMilestone()
   }
 
   const collapsed = activeItem !== 'milestone' + id + name && !(tasks.filter(task => activeItem === `task${task.id}${task.task_name}`).length > 0)
+
+  useEffect(() => {
+    if (!collapsed) {
+      setActiveMilestoneId(id)
+    }
+  }, [collapsed])
 
   const handleClick = e => {
     e.stopPropagation()
@@ -87,6 +97,8 @@ const TimelineMilestone = ({
           catch(e) { }
 
           updateCallback()
+
+
         }
         submitEditName()
         setActiveItem('milestone' + id + editName)
@@ -112,6 +124,8 @@ const TimelineMilestone = ({
           catch(e) { }
 
           updateCallback()
+
+
         }
         submitEditDescription()
       }
@@ -134,6 +148,8 @@ const TimelineMilestone = ({
             })
           } catch(e) { }
           updateCallback()
+
+
         }
         submitEditDate()
       }
@@ -181,6 +197,8 @@ const TimelineMilestone = ({
     }
   }, [])
 
+
+
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       async function submitEmojis() {
@@ -190,7 +208,8 @@ const TimelineMilestone = ({
             emojis: JSON.stringify(emojis.map(emoji => emoji.count))
           })
         } catch(e) { }
-        updateCallback()
+        // updateCallback()
+
       }
       submitEmojis()
     }, 2000)

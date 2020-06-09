@@ -252,12 +252,14 @@ export default class ProjectAPI {
     }
   }
 
-  static async getMilestoneEmojis(props) {
+  // comments
+
+  static async sendMilestoneComment(props) {
     if (!Authentication.loggedIn()) return;
     const res = await fetch(
-      `${Config.base_url}/milestones/getReactions`,
+      `${Config.base_url}/milestones/sendComment`,
       {
-        method: "GET",
+        method: "POST",
         headers: Authentication.withJWT(),
         body: JSON.stringify(props)
       }
@@ -270,12 +272,12 @@ export default class ProjectAPI {
     }
   }
 
-  static async getTaskEmojis(props) {
+  static async sendTaskComment(props) {
     if (!Authentication.loggedIn()) return;
     const res = await fetch(
-      `${Config.base_url}/tasks/getReactions`,
+      `${Config.base_url}/tasks/sendComment`,
       {
-        method: "GET",
+        method: "POST",
         headers: Authentication.withJWT(),
         body: JSON.stringify(props)
       }
@@ -288,3 +290,4 @@ export default class ProjectAPI {
     }
   }
 }
+

@@ -23,6 +23,7 @@ const Sidebar = ({activeComponent, projectComponents, onClickFunction, updateCal
     catch(e) { }
 
     updateCallback()
+
   }
 
   async function update() {
@@ -35,6 +36,7 @@ const Sidebar = ({activeComponent, projectComponents, onClickFunction, updateCal
     catch(e) { }
 
     updateCallback()
+
   }
 
   async function deleteComponent() {
@@ -46,6 +48,7 @@ const Sidebar = ({activeComponent, projectComponents, onClickFunction, updateCal
     catch(e) { }
 
     updateCallback()
+
     resetActiveComponent()
   }
 
