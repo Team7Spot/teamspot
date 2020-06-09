@@ -166,8 +166,20 @@ module.exports = {
   getCommments: (connection, id) => {
     return milestoneWrapper.getCommments(connection, id);
   },
-  sendCommentMilestone: (connection, id) => {
-    return milestoneWrapper.sendComment(connection, id);
+  sendCommentMilestone: (
+    connection,
+    milestone_id,
+    user_id,
+    time_stamp,
+    content
+  ) => {
+    return milestoneWrapper.sendComment(
+      connection,
+      milestone_id,
+      user_id,
+      time_stamp,
+      content
+    );
   },
   milestoneReaction: (connection, id, emojis) => {
     return milestoneWrapper.addReaction(connection, id, emojis);
@@ -231,8 +243,20 @@ module.exports = {
   getCommentsTask: (connection, id) => {
     return taskWrapper.getComments(connection, id);
   },
-  sendCommentTask: (connection, id) => {
-    return taskWrapper.sendComment(connection, id);
+  sendCommentTask: (
+    connection,
+    task_id,
+    user_id,
+    time_stamp,
+    content
+  ) => {
+    return taskWrapper.sendComment(
+      connection,
+      task_id,
+      user_id,
+      time_stamp,
+      content
+    );
   },
   taskReaction: (connection, id, emojis) => {
     return taskWrapper.addReaction(connection, id, emojis);

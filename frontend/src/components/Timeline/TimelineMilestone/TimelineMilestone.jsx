@@ -176,12 +176,12 @@ const TimelineMilestone = ({
     }
   ])
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (milestoneEmojis) {
       const emojiMapping = ['👏', '🎉', '🔥', '👀', '❤️', '😍', '💵']
       setEmojis(JSON.parse(milestoneEmojis).map((emojiCount, index) => { return { emoji: emojiMapping[index], count: emojiCount } }))
     }
-  }, [])*/
+  }, [])
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {

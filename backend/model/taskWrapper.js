@@ -140,7 +140,7 @@ module.exports = {
     });
   },
   getComments: (connection, id) => {
-    let query = "SELECT comments FROM task WHERE id = ?;";
+    let query = `SELECT * FROM task_comments WHERE task_id = ${id};`;
     return new Promise((res, rej) => {
       connection.query(query, [id], (err, rows, fields) => {
         if (err) {
@@ -151,10 +151,23 @@ module.exports = {
       })
     });
   },
-  sendComment: (connection, id, comment) => {
-    let query = "UPDATE task SET comments = CONCAT(comments, '?') WHERE id = ?;";
+  sendComment: (
+    connection,
+    task_id,
+    user_id,
+    time_stamp,
+    content
+  ) => {
+    let query = "INSERT INTO task_comments(task_id, user_id, time_stamp, content) VALUES(?, ?, ?, ?);";
     return new Promise((res, rej) => {
-      connection.query(query, [comment, id], (err, rows, fields) => {
+      connection.query(query,
+      [
+        task_id,
+        user_id,
+        time_stamp,
+        content
+      ],
+      (err, rows, fields) => {
         if (err) {
           rej(err);
         } else {

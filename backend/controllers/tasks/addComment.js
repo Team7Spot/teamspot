@@ -6,8 +6,14 @@ const router = express.Router();
 
 router.post("", async (req, res, next) => {
   try {
-    const c = req.app.get("databaseConnection");
-    const results = await sqlwrapper.sendCommentTask(c, req.body.id, req.body.name, req.body.comment, req.body.date);
+    const con = req.app.get("databaseConnection");
+    const results = await sqlwrapper.sendCommentTask(
+      con,
+      req.body.task_id,
+      req.body.user_id,
+      req.body.time_stamp,
+      req.body.content
+    );
     res.status(200);
     res.json({ comments: results });
   } catch (err) {

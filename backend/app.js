@@ -2,7 +2,7 @@
 
 const express = require("express");
 const path = require("path");
-const cors = require("cors");
+//const cors = require("cors");
 
 const config = require("./config");
 const connection = require("./model/connect");
@@ -64,7 +64,7 @@ connection.connect(
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
 
 if (app.get("serverConfig").env === "development") {
   app.use(function(req, res, next) {

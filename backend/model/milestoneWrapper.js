@@ -141,7 +141,7 @@ module.exports = {
     });
   },
   getComments: (connection, id) => {
-    let query = "SELECT comments FROM milestone WHERE id = ?;";
+    let query = `SELECT * FROM milestone_comments WHERE milestone_id = ${id};`;
     return new Promise((res, rej) => {
       connection.query(query, [id], (err, rows, fields) => {
         if (err) {
@@ -152,10 +152,23 @@ module.exports = {
       })
     });
   },
-  sendComment: (connection, id, comment) => {
-    let query = "UPDATE milestone SET comments = CONCAT(comments, '?') WHERE id = ?;";
+  sendComment: (
+    connection,
+    milestone_id,
+    user_id,
+    time_stamp,
+    content
+  ) => {
+    let query = "INSERT INTO task_comments(milestone_id, user_id, time_stamp, content) VALUES(?, ?, ?, ?);";
     return new Promise((res, rej) => {
-      connection.query(query, [comment, id], (err, rows, fields) => {
+      connection.query(query,
+      [
+        milestone_id,
+        user_id,
+        time_stamp,
+        content
+      ],
+      (err, rows, fields) => {
         if (err) {
           rej(err);
         } else {
