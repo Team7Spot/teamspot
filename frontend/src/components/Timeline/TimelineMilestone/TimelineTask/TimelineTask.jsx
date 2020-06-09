@@ -42,7 +42,6 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
       let props = {
         id 
       }
-      console.log(id)
       try {
         await ProjectAPI.deleteTask(props)
       } 
@@ -185,7 +184,6 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
         updateCallback()
       }
       submitEmojis()
-      console.log(JSON.stringify(emojis.map(emoji => emoji.count)))
     }, 2000)
 
     return () => clearTimeout(delayDebounceFn)

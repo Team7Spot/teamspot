@@ -35,7 +35,18 @@ const AppPage = ({ classes, login, register, ...rest }) => {
     catch (error) {}  
   }
 
-  useEffect(() => getComponents(), [])
+  useEffect(() => {getComponents()}, [])
+
+  useEffect(() => {
+    async function getUID() {
+      try {
+        const userID = await Authentication.getUID()
+        console.log(userID)
+      } 
+      catch (error) {}  
+    }
+    getUID()
+  }, [])
 
   useEffect(() => {
     const activeItemElement = document.getElementById(activeItem)

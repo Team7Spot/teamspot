@@ -118,8 +118,9 @@ const Sidebar = ({activeComponent, projectComponents, onClickFunction, updateCal
         <S.Logo src={require('./teamspot-logo.svg')} />
       </S.Header>
       {
-        projectComponents.map(component => 
+        projectComponents.map((component, index) => 
           <S.Component 
+            key={component.component_name + index}
             active={activeComponent === component.component_name} 
             onClick={() => onClickFunction(component.component_name)}
             title={component.component_name}
