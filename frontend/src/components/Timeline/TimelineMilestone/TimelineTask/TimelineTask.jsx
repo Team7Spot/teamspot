@@ -22,6 +22,8 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
     catch(e) { }
 
     updateCallback()
+
+
   }
 
   const handleCompleteClick = e => {
@@ -48,6 +50,8 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
       catch(e) { }
   
       updateCallback()
+
+
     }
     deleteTask()
   }
@@ -77,6 +81,9 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
           catch(e) { }
       
           updateCallback()
+
+
+          
         }
         submitEditName()
         setActiveItem('task' + id + editName)
@@ -104,6 +111,8 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
           catch(e) { }
       
           updateCallback()
+
+
         }
         submitEditDescription()
       }
@@ -126,6 +135,8 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
             })
           } catch(e) { }
           updateCallback()
+
+
         }
         submitEditDate()
       }
@@ -181,7 +192,9 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
             emojis: JSON.stringify(emojis.map(emoji => emoji.count))
           })
         } catch(e) { }
-        updateCallback()
+        // updateCallback()
+
+
       }
       submitEmojis()
     }, 2000)
