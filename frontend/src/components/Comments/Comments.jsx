@@ -18,13 +18,17 @@ const Comments = ({activeItem, UID, projectComponents, activeComponentId, update
     setComments([])
     if (activeComponentId && activeComponentId !== -1 && projectComponents && activeMilestoneId !== -1 && activeMilestoneId) {
       if (type === 'milestone') {
-        setComments(projectComponents.find(component => component.id === activeComponentId).milestones.find(milestone => 
-          milestone.id === activeMilestoneId).comments)
+        if (projectComponents.find(component => component.id === activeComponentId).milestones.find(milestone => milestone.id === activeMilestoneId)) {
+          setComments(projectComponents.find(component => component.id === activeComponentId).milestones.find(milestone => 
+            milestone.id === activeMilestoneId).comments)
+        }
       }
       else if (type === 'task') {
-        setComments(projectComponents.find(component => component.id === activeComponentId).milestones.find(milestone => 
-          milestone.id === activeMilestoneId).tasks.find(task => task.id == id).comments
-        )
+        if (projectComponents.find(component => component.id === activeComponentId).milestones.find(milestone => milestone.id === activeMilestoneId).tasks.find(task => task.id == id)) {
+          setComments(projectComponents.find(component => component.id === activeComponentId).milestones.find(milestone => 
+            milestone.id === activeMilestoneId).tasks.find(task => task.id == id).comments
+          )
+        }
       }
     }
   }, [activeItem, projectComponents])
