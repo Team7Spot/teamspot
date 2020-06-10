@@ -201,10 +201,17 @@ const TimelineMilestone = ({
     }
   }, [])
 
+  const timeoutFunction = useRef()
 
+  const incrementEmoji = emojiChar => {
+    const newEmojis = emojis.map(emoji => emoji.emoji === emojiChar ? { count: emoji.count++, ...emoji } : emoji)
+    setEmojis(newEmojis)
 
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
+    if (timeoutFunction.current) {
+      clearTimeout(timeoutFunction.current)
+    }
+
+    timeoutFunction.current = setTimeout(() => {
       async function submitEmojis() {
         try {
           await ProjectAPI.setMilestoneEmojis({
@@ -212,17 +219,11 @@ const TimelineMilestone = ({
             emojis: JSON.stringify(emojis.map(emoji => emoji.count))
           })
         } catch(e) { }
-        // updateCallback()
+        updateCallback()
 
       }
       submitEmojis()
-    }, 2000)
-
-    return () => clearTimeout(delayDebounceFn)
-  }, [emojis])
-
-  const incrementEmoji = emojiChar => {
-    setEmojis(emojis.map(emoji => emoji.emoji === emojiChar ? { count: emoji.count++, ...emoji } : emoji))
+    }, 1000) 
   }
 
   return (

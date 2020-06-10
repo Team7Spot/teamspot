@@ -183,28 +183,29 @@ const TimelineTask = ({ name, description, deadline, id, updateCallback, complet
     }
   }, [])
 
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
+  const timeoutFunction = useRef()
+
+  const incrementEmoji = emojiChar => {
+    const newEmojis = emojis.map(emoji => emoji.emoji === emojiChar ? { count: emoji.count++, ...emoji } : emoji)
+    setEmojis(newEmojis)
+
+    if (timeoutFunction.current) {
+      clearTimeout(timeoutFunction.current)
+    }
+
+    timeoutFunction.current = setTimeout(() => {
       async function submitEmojis() {
         try {
           await ProjectAPI.setTaskEmojis({
-            id, 
+            id,
             emojis: JSON.stringify(emojis.map(emoji => emoji.count))
           })
         } catch(e) { }
-        // updateCallback()
-
+        updateCallback()
 
       }
       submitEmojis()
-    }, 2000)
-
-    return () => clearTimeout(delayDebounceFn)
-  }, [emojis])
-
-
-  const incrementEmoji = emojiChar => {
-    setEmojis(emojis.map(emoji => emoji.emoji === emojiChar ? { count: emoji.count++, ...emoji } : emoji))
+    }, 1000) 
   }
 
   return (
