@@ -9,29 +9,25 @@ import Comment from './Comment/Comment'
 const Comments = ({activeItem, UID, projectComponents, activeComponentId, updateCallback, activeMilestoneId }) => {
 
   const type = activeItem ? activeItem.substring(0,4) === 'task' ? 'task' : 'milestone' : ''
-
   const id = activeItem ? activeItem.match(/\d+/g) : -1
 
   const [comments, setComments] = useState([])
-
   const [content, setContent] = useState('')
 
   useEffect(() => {
     setComments([])
     if (activeComponentId && activeComponentId !== -1 && projectComponents && activeMilestoneId !== -1 && activeMilestoneId) {
       if (type === 'milestone') {
-        let commentsDisplay
-        type === 'milestone' 
-          ? commentsDisplay = projectComponents.find(component => component.id === activeComponentId).milestones.find(milestone => milestone.id === activeMilestoneId).comments
-          : commentsDisplay = projectComponents.find(component => 
-            component.id === activeComponentId).milestones.find(milestone => 
-              milestone.id === activeMilestoneId).tasks.find(task => task.id === id).comment
-
-        if (commentsDisplay) { setComments(commentsDisplay) }
+        setComments(projectComponents.find(component => component.id === activeComponentId).milestones.find(milestone => 
+          milestone.id === activeMilestoneId).comments)
+      }
+      else if (type === 'task') {
+        setComments(projectComponents.find(component => component.id === activeComponentId).milestones.find(milestone => 
+          milestone.id === activeMilestoneId).tasks.find(task => task.id == id).comments
+        )
       }
     }
   }, [activeItem, projectComponents])
-
 
   async function sendMilestoneComment() {
     let props = {

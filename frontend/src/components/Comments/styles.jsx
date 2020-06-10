@@ -28,11 +28,11 @@ export const HeaderText = styled.h1`
 export const Content = styled.div`
   position: relative;
   width: calc(100% - 32px);
-  height: 100%;
+  max-height: calc(100vh - 80px);
   padding: 16px;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
+  overflow-y: auto;
 `;
 
 export const CommentInput = styled.input`
