@@ -69,7 +69,11 @@ const TimelineMilestone = ({
 
   const handleClick = e => {
     e.stopPropagation()
-    collapsed ? setActiveItem('milestone' + id + name) : setActiveItem(null)
+    if (collapsed) {
+      setActiveMilestoneId(id)
+      setActiveItem('milestone' + id + name)
+    }
+    else { setActiveItem(null) }
   }
 
   const edit = e => {
