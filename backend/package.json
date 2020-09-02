@@ -21,7 +21,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "google-auth-library": "^3.1.0",
-    "googleapis": "^37.2.0",
+    "googleapis": "^39.1.0",
     "jsonwebtoken": "^8.3.0",
     "log4js": "^3.0.5",
     "mysql": "^2.16.0"
